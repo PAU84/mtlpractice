@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MTL Practice</title>
+
+<style>
+  :root{
+    --ink:#24422b;
+    --ink-2:#35523a;
+    --paper:rgba(250,245,235,.58);
+    --line:rgba(60,50,30,.25);
+    --btn:#3e5d47;
+    --btn-hover:#4b7056;
+    --radius:18px;
+  }
+
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: Georgia, serif;
+    color:var(--ink);
+    background:url("landbackground.png") center/cover no-repeat fixed;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  .wrap {
+    width:min(780px,94vw);
+    display:flex; flex-direction:column; gap:16px;
+    align-items:center; justify-content:center;
+    padding:10px;
+    box-sizing:border-box;
+  }
+
+  .container{
+    width:100%;
+    text-align:center;
+    background:var(--paper);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 28px;
+    box-sizing:border-box;
+    box-shadow:0 12px 40px rgba(0,0,0,.15);
+    position:relative;
+  }
+
+  h1{
+    margin:0 0 8px;
+    font-size:clamp(32px,5vw,44px);
+    font-weight:800;
+    color:var(--ink);
+    text-shadow:0 2px 4px rgba(0,0,0,.1);
+  }
+
+  .tagline{
+    color:var(--ink-2);
+    margin:0 0 18px;
+    font-weight:500;
+    opacity:.9;
+  }
+
+  .view{
+    opacity:0;
+    transform:translateY(8px);
+    pointer-events:none;
+    height:0;
+    overflow:hidden;
+    transition:opacity .22s ease,transform .22s ease;
+  }
+
+  .view.active{
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    height:auto
+  }
+
+  .lead{
+    font-size:clamp(16px,2.6vw,18px);
+    line-height:1.6;
+    color:#2d3c30;
+    margin:12px auto 24px;
+  }
+
+  .actions{
+    display:flex;
+    flex-wrap:nowrap; /* desktop no wrap */
+    gap:10px;
+    justify-content:center;
+    max-width:none;
+  }
+
+  @media (max-width:700px){
+    .actions{flex-wrap:wrap;} /* wrap on mobile */
+  }
+
+  .link-btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.85);
+    color:var(--ink);
+    padding:10px 14px;
+    border-radius:10px;
+    font-weight:600;
+    text-decoration:none;
+    transition:transform .15s,box-shadow .15s;
+    font-size:14px;
+  }
+
+  .link-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+  }
+
+  form{display:grid;gap:12px;margin-top:8px}
+
+  input,textarea{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid rgba(60,50,30,.28);
+    background:rgba(255,255,255,.9);
+    font:inherit;
+  }
+
+  textarea{min-height:120px;resize:vertical}
+
+  .btn{
+    display:inline-block;width:100%;max-width:220px;margin:4px auto 0;
+    background:var(--btn);color:#fff;border:none;border-radius:10px;
+    padding:12px 16px;font-weight:700;cursor:pointer;
+    transition:background .2s,box-shadow .2s,transform .1s;
+  }
+
+  .btn:hover{
+    background:var(--btn-hover);
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+  }
+
+  .btn:active{transform:translateY(1px)}
+
+  .back{
+    position:absolute;top:16px;left:16px;
+    background:rgba(255,255,255,.9);
+    border:1px solid var(--line);
+    color:var(--ink);
+    border-radius:999px;
+    padding:6px 14px;
+    font-weight:600;
+    cursor:pointer;
+    display:none;
+    z-index:10;
+  }
+
+  .container:not([data-view="home"]) .back{display:inline-block}
+
+  .note{font-size:14px;color:#3b4a3e;opacity:.9;margin-top:10px}
+
+  /* bottom-right badge area */
+  .badge-stack{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    display:flex;
+    flex-direction:row;
+    gap:12px;
+    align-items:flex-end;
+    z-index:20;
+  }
+
+  .corner-badge{
+    width:12vw;
+    max-width:80px;
+    opacity:.95;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,.2));
+  }
+
+  @media (max-width:600px){
+    .badge-stack{
+      flex-direction:column;
+      right:12px;
+      bottom:12px;
+      gap:10px;
+    }
+    .corner-badge{
+      width:30vw;
+      max-width:120px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <main class="container" id="bubble" data-view="home" aria-live="polite">
+    <button class="back" id="backBtn">← Back</button>
+
+    <h1>MTL Practice</h1>
+    <div class="tagline">Sex intimacy and relationship coaching</div>
+
+    <!-- Home -->
+    <section class="view active" id="home">
+      <p class="lead">
+        A grounded, compassionate space to explore intimacy, connection,
+        and relationship to self and others. Learn more, ask questions,
+        or book a free intro call when you're ready.
+      </p>
+    </section>
+
+    <!-- About / Sex Coaching -->
+    <section class="view" id="about">
+      <p class="lead">
+        Sex coaching supports emotional connection, nervous system awareness,
+        communication, desire, boundaries, and embodied intimacy. Sessions are
+        curious, collaborative, and paced to meet you where you are.
+      </p>
+      <p class="note">
+        Want to ask something first?
+        <a data-nav="contact" href="#contact" class="link-btn">Questions</a>
+      </p>
+    </section>
+
+    <!-- Contact -->
+    <section class="view" id="contact">
+      <p class="lead">Send a note and I'll reply shortly:</p>
+      <form onsubmit="event.preventDefault(); alert('Thanks! I’ll get back to you soon.');">
+        <input type="email" placeholder="Your email" required />
+        <textarea placeholder="Your message" required></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
+
+    <!-- Book -->
+    <section class="view" id="book">
+      <p class="lead">
+        Book a free 20-minute call to ask questions and explore working together.
+      </p>
+      <a class="btn" href="#" onclick="alert('Add scheduling link'); return false;">
+        Book Free Call
+      </a>
+      <p class="note">
+        Prefer email?
+        <a data-nav="contact" href="#contact" class="link-btn">Contact me</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Nav Buttons -->
+  <nav class="actions">
+    <a data-nav="about" href="#about"  class="link-btn">What's Sex Coaching</a>
+    <a data-nav="about" href="#about"  class="link-btn">Meet The Coach</a>
+    <a data-nav="book"  href="#book"   class="link-btn">Book Free Call</a>
+    <a data-nav="contact" href="#contact" class="link-btn">Questions</a>
+    <a data-nav="book"  href="#book"   class="link-btn">Scheduling</a>
+  </nav>
+</div>
+
+<!-- bottom-right badges -->
+<div class="badge-stack">
+  <img src="sexcoachu.png" alt="Certification" class="corner-badge" />
+  <img src="boardofsexology.png" alt="Safe Space" class="corner-badge" />
+  <!-- <img src="safespace.png" alt="Safe Space" class="corner-badge" /> -->
+
+</div>
+
+<script>
+  const bubble = document.getElementById('bubble');
+  const views  = { home:'#home', about:'#about', contact:'#contact', book:'#book' };
+  const backBtn = document.getElementById('backBtn');
+
+  function show(view){
+    bubble.setAttribute('data-view', view);
+    for(const id of Object.keys(views)){
+      document.querySelector(views[id]).classList.toggle('active', id === view);
+    }
+  }
+
+  document.addEventListener('click', e=>{
+    const link = e.target.closest('[data-nav]');
+    if(!link) return;
+    e.preventDefault();
+    const target = link.getAttribute('data-nav');
+    if(views[target]){
+      location.hash = target;
+      show(target);
+    }
+  });
+
+  backBtn.addEventListener('click', ()=>{
+    location.hash = '';
+    show('home');
+  });
+
+  function boot(){
+    const hash = location.hash.replace('#','');
+    show(views[hash] ? hash : 'home');
+  }
+
+  window.addEventListener('hashchange', boot);
+  boot();
+</script>
+
+</body>
+</html>
