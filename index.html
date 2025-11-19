@@ -7,7 +7,7 @@
 
 <style>
   :root{
-    --ink:#24422b;
+    --ink:#142b19;
     --ink-2:#35523a;
     --paper:rgba(250,245,235,.58);
     --line:rgba(60,50,30,.25);
@@ -22,7 +22,7 @@
     margin:0;
     font-family: Inter,Helvetica;
     color:var(--ink);
-    background:url("landbackground.png") center/cover no-repeat;
+    background:url("backg.png") center/cover no-repeat;
     display:flex;                         /* center horizontally */
     justify-content:center;
     align-items:center;                   /* desktop centered */
@@ -93,7 +93,7 @@
   }
   .homebtn{
     display:none;                 /* hidden on home */
-    background:var(--paper);
+background: transparent;
     border:1px solid var(--line);
     color:var(--ink);
     border-radius:999px;
@@ -108,7 +108,7 @@
     margin:0 0 8px;
     font-size:clamp(32px,5vw,44px);
     font-weight:800;
-    color:#2a5656;
+    color:#1b3d3d;
     text-shadow:0 2px 4px rgba(0,0,0,.1);
   }
 
@@ -131,7 +131,7 @@
   .lead{
     font-size:clamp(16px,2.6vw,18px);
     line-height:1.6;
-    color:#2d3c30;
+    color:#1b281d;
     margin:12px auto 24px;
   }
 
@@ -274,6 +274,24 @@ h1{ font-size: clamp(30px, 4.1vw, 45px); }
   .container{ padding: 14px 14px 18px; }
   .actions{ margin-top: 4px; gap: 10px; }
 }
+.centered-list {
+  font-size: clamp(18px, 2.2vw, 20px); line-height: 1.6; 
+  max-width: 80%;      /* controls width */
+  margin: 0 auto 2rem;   /* centers the block + spacing below */
+  padding: 0 1rem;       /* small horizontal padding */
+  text-align: left;      /* keeps bullets left-aligned */
+  color:#1b281d
+}
+
+.centered-list ul {
+  padding-left: 1.3rem;  /* proper bullet indent */
+  margin: 1rem 0;        /* space around the list */
+}
+
+.centered-list li {
+  margin-bottom: 0.75rem; /* nice vertical spacing */
+  line-height: 1.6;
+}
 
 
 </style>
@@ -290,15 +308,14 @@ h1{ font-size: clamp(30px, 4.1vw, 45px); }
       <!-- Nav Buttons -->
   <nav class="actions" aria-label="Section navigation">
     <a data-nav="book"  href="#book"   class="link-btn">Book <span class="link-btn-free">FREE</span> Call</a>
-
-    <a data-nav="about" href="#about"  class="link-btn">What's Sex Coaching</a>
     <a data-nav="me"    href="#me"     class="link-btn">Meet The Coach</a>
+    <a data-nav="about" href="#about"  class="link-btn">What's Sex Coaching</a>
     <a data-nav="contact" href="#contact" class="link-btn">Questions</a>
   </nav>
 
   <main class="container" id="bubble" data-view="home" aria-live="polite">
     <div class="topbar">
-      <button class="homebtn" id="homeBtn">← Home</button>
+      <!-- <button class="homebtn" id="homeBtn">← Home</button> -->
     </div>
 
     <h1>MTL PRACTICE</h1>
@@ -306,24 +323,157 @@ h1{ font-size: clamp(30px, 4.1vw, 45px); }
 
     <!-- Home -->
     <section class="view active" id="home">
-      <p class="lead">
-        Welcome to Multiple Truths Land, a space for Everyone where we practice reclaiming our humanity through pleasure, honesty, authenticity, and a dash of humor. Guided by me, Coach Pau, and grounded in uncolonization and abolition -the ultimate goal is liberation. Buckle up -freedom's got layers! 
-<br><br>
-Schedule your FREE Call with me now!
-      </p>
+        <p class="lead">
+            Welcome to the Multiple Truths Land Practice!   </p>
+            <p class="lead">
+
+            I am deeply grateful that you are taking the time, energy, and resources to engage in this work. As your coach, my role is to remind you to be human, to allow, acknowledge, and celebrate your own humanity, and to see, allow, acknowledge, and celebrate the humanity in others. I will be doing that by supporting your sexual wellbeing, self-knowledge, and liberation, honoring your autonomy and lived experiences.
+        </p><p class="lead">
+
+            My practice is rooted in:
+          </p>
+          
+          <div class="centered-list">
+            <ul>
+              <li>interdependency</li>
+              <li>uncolonization (as a settler that I am)</li>
+              <li>continuity and expansion versus binarism</li>
+              <li>anti-oppression, and the abolition of all systems that constrain pleasure, desire, self-expression, and overall liberation of all beings</li>
+              <li>
+                the multiple truths theory. Truth is multidimensional and exists in the honesty of looking at all sides. That’s why a single reality can be understood in different, and sometimes conflicting ways, depending on perspective and/or context, and diverse interpretations can all hold validity simultaneously.
+              </li>
+            </ul>
+          </div>
+          
+          <p class="lead">
+            My work is not neutral. It is a refusal to replicate systems of control and non-consensual violence under the guise of professionalism. I hold this space with care, respect, shared responsibility, and shared power, as a site of healing, education, pleasure, and resistance. Liberation is the ultimate goal.
+          </p>
+          
+          
     </section>
 
     <!-- About / Sex Coaching -->
     <section class="view" id="about">
-      <p class="lead">
-        Sex coaching supports emotional connection, nervous system awareness,
-        communication, desire, boundaries, and embodied intimacy. Sessions are
-        curious, collaborative, and paced to meet you where you are.
-      </p>
-      <!-- <p class="note">
-        Want to ask something first?
-        <a data-nav="contact" href="#contact" class="link-btn">Questions</a>
-      </p> -->
+        <p class="lead">
+            <strong>What is Sex or Sexistential Coaching?</strong>
+          </p>
+          
+          <p class="lead">
+            Sexistential coaching, also called Sex, Intimacy & Relationship Coaching, focuses on sexuality and supports our human experience. PAUSE! Let me clarify one really important thing: sexuality is deeper than sex. Go ahead and read that again please, take a deep breath, and carry on.
+          </p>
+          
+          <p class="lead">
+            We live in a strangely ironic society: a hypersexualized culture that sends us the message that we should all be having amazing, and endless sex; yet simultaneously treats sex and sexuality as taboo, shameful, or improper to speak about, and cancels the nature of humanity—therefore sexuality: expansiveness. I’m talking about the full continuity of sexuality and sex, from and to passing through everything in between and all the combinations!
+          </p>
+          
+          <p class="lead">
+            In reality, we are sexual beings from birth to death, not because we’re meant to be sexualized at all times, but because we’re wired for connection, pleasure, and embodiment. No one is owed another person, but everyone is entitled to their own desire, their own pleasure, and their own consensual self-expression. These impulses aren’t problems to hide or distrust; they’re parts of being human. When we bring the “forbidden” into the light, especially in a society that’s both obsessed with sex and terrified of talking about it, we liberate us All: we make space for authenticity, “safety”/healing*, and the ability to shine, reducing harm.
+          </p>
+          
+          <p class="lead">
+            During our sessions we lean into curiosity, and commit to an honest and authentic collaboration at your pace.
+          </p>
+          
+          <p class="lead">
+            Sex Coaching is a guided process to:
+          </p>
+          
+          <div class="centered-list">
+            <ul>
+              <li>Experience a healing-oriented, open, non-judgmental space to explore your sexual self.</li>
+              <li>Access accurate, personalized information about sex and sexuality.</li>
+              <li>Learn techniques and strategies to expand pleasure (mentally and physically) and connection with yourself and others.</li>
+              <li>Practice tuning into your whole self: mind, body, emotions, energy, and spirit/essence.</li>
+              <li>Examine messages, beliefs, and internalized oppression.</li>
+              <li>Clarify needs, desires, hopes, fears, boundaries, and values.</li>
+              <li>Practice communication, negotiation, and accountability without blame or shame.</li>
+              <li>Set goals and intentions, identify strengths, and work through obstacles without a diagnosis or “fixing.”</li>
+              <li>Cultivate more love, kindness, and curiosity toward yourself and others.</li>
+              <li>Access a wealth of resources, tools, and referrals to other professionals as needed.</li>
+            </ul>
+          </div>
+          
+          <p class="lead">
+            Please notice that no nudity or sexual activity takes place in sessions.
+          </p>
+          
+          <p class="lead">
+            <strong>*An important note on “safety”:</strong>
+          </p>
+          
+          <p class="lead">
+            I use this word with intention. My work is rooted in reclaiming humanity within a society that often tries to strip it away. And acknowledging my humanity means acknowledging my limits: I cannot be a perfectly safe space for everyone, and every being in every moment. The same is true when I recognize the humanity of others: we are all capable of care, and we are all capable of harm.
+          </p>
+          
+          <p class="lead">
+            What I am committed to is this: I do not choose conscious harm, and when harm happens, I am committed to reduce it, be accountable, and repair.
+          </p>
+          
+          <p class="lead">
+            For that reason, I speak less about creating a “safe” space and more about cultivating a healing-oriented space, one shaped by intention, awareness, repair, and humanity rather than the impossible ideal of perfect safety.
+          </p>
+          
+          <p class="lead">
+            <strong>How Sex Coaching Engages All Parts of You</strong>
+          </p>
+          
+          <div class="centered-list">
+            <ul>
+              <li><strong>Mind:</strong> Explore how colonial, capitalist, patriarchal, and racial conditioning shape your thoughts, desires, expectations, and self-talk. Dismantle shame, performance pressure, and limiting beliefs while cultivating a liberated mindset centered on curiosity, consent, and your own values.</li>
+              <li><strong>Emotions:</strong> Reclaim feelings suppressed or pathologized by oppressive systems. Create space for authentic expression, intimacy, and self-compassion.</li>
+              <li><strong>Body & Body-Image:</strong> Examine societal, colonial, and ableist standards affecting pleasure and embodiment. Learn to understand and celebrate your sexual architecture (including body neutrality!), honor boundaries, and cultivate pleasure free from shame, comparison, or coercion.</li>
+              <li><strong>Energy:</strong> Sexual energy is personal and collective power, and it goes further than sexual desire and acts. Observe, cultivate, and direct it ethically for connection, creativity, and liberation.</li>
+              <li><strong>Spirit/Essence:</strong> Explore self-realization and experiences in ways that honor your spiritual framework/ethical values and the sacredness of desire, without hierarchy or cultural appropriation.</li>
+            </ul>
+          </div>
+          
+          <p class="lead">
+            <strong>What can Sex Coaching do for you?</strong>
+          </p>
+          
+          <p class="lead">
+            Sex coaching focuses on normalization, permission, education, action, solution, and skill-building, to create a healthier and more fulfilling reality. Examples of how it can help you:
+          </p>
+          
+          <div class="centered-list">
+            <ul>
+              <li>Reclaim your right to pleasure, especially for those who’ve faced and continue to face systemic and/or cultural oppression</li>
+              <li>Improve communication about sex, intimacy (non-sexual and sexual), and/or dating</li>
+              <li>Build a stronger sense of sexual self-worth, (body) confidence, and authentic expression</li>
+              <li>Understand your desires, wants, and boundaries</li>
+              <li>Gain clarity and support around identity shifts, or partnering transitions</li>
+              <li>Explore questions around gender identity and/or sexual orientation to feel more at ease embracing your authentic self</li>
+              <li>Rebuild intimacy after life changes, such as stress, kids, aging, etc.</li>
+              <li>Reduce performance anxiety and/or dating anxiety</li>
+              <li>Navigate mismatched desires, wants, and boundaries with partner(s)</li>
+              <li>Increase pleasure and explore new ways of connecting</li>
+              <li>Learn practical skills like touch techniques, arousal tools, communication scripts</li>
+              <li>Navigating sexual pain or dysfunction</li>
+            </ul>
+          </div>
+          
+          <p class="lead">
+            <strong>What’s the difference between (Sex) Coaching and (Sex) Therapy?</strong>
+          </p>
+          
+          <p class="lead">
+            Coaching is distinct from Therapy, though it can complement therapeutic or healing work, and is both educational and transformational. Coaching and Therapy are 100% compatible and complement each other extremely well. However, the two often get confused, so here’s the simple breakdown:
+          </p>
+          
+          <p class="lead">
+            <strong>Sex Coaching</strong> focuses on skills, education, and forward progress. It is present- and future-focused, and action-oriented—using exercises, communication tools, and guided practices. This modality is about improvement and overcoming roadblocks. Sex Coaching usually requires a certified sex coach or (clinical) sexologist. Sex Coaching is great for individuals or couples wanting better connection, pleasure, intimacy, and/or confidence.
+          </p>
+          
+          <p class="lead">
+            <strong>Sex Therapy</strong> focuses on mental health or clinical concerns. There could be diagnosing and treatment in therapy. This modality helps with deeper emotional wounds, traumas, and past experiences. Sex Therapy often requires a licensed therapist. Sex Therapy is great for those whose sexual challenges are rooted in emotional, psychological, or trauma-related experiences.
+          </p>
+          
+          <p class="lead">
+            <strong>Example of a Sex Coaching question versus Sex Therapy question:</strong><br>
+            Coaching: “How can I build the sex life I want?”<br>
+            Therapy: “Why am I struggling, and what deeper healing is needed?”
+          </p>
+          
     </section>
 
     <!-- Meet the Coach -->
@@ -357,12 +507,28 @@ Schedule your FREE Call with me now!
       </p> -->
     </section>
   </main>
-
-  <!-- Certificates (bottom-left on desktop; in-flow on mobile) -->
   <div class="badge-stack">
-    <img src="sexcoachu.png"        alt="Certification — Sex Coach U" class="corner-badge cert-img" data-full="sexcoachu.png" />
-    <img src="boardofsexology.png"  alt="Certification — American Board of Sexology" class="corner-badge cert-img" data-full="boardofsexology.png" />
+
+    <!-- Sex Coach U (keeps modal) -->
+    <a href="#" class="badge-link" onclick="return false;">
+      <img src="sexcoachu.png"
+        alt="Certification — Sex Coach U"
+        class="corner-badge cert-img"
+        data-full="sexcoachu.png" />
+    </a>
+  
+    <!-- American Board of Sexology (opens link) -->
+    <a href="https://americanboardofsexology.org/sexologist/paula-perez-costas/"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="badge-link">
+      <img src="boardofsexology.png"
+        alt="Certification — American Board of Sexology"
+        class="corner-badge" />
+    </a>
+  
   </div>
+  
 </div>
 
 <!-- Full-screen image modal -->
