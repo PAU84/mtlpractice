@@ -113,10 +113,6 @@
   
 
 
-
-
-
-
   /* Page wrapper */
   .wrap{
     width:min(780px,94vw);
@@ -330,6 +326,12 @@
     width: clamp(320px, 70vw, 1280px);
     margin-inline: auto;
   }
+  @media (max-width:700px){
+  .wrap{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
 
   .container{ width: 100%; }
 
