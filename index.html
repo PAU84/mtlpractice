@@ -124,18 +124,31 @@
   }
 
   /* Bubble card */
+
+  /* Bubble card */
   .container{
     width:100%;
     text-align:center;
-    background:rgb(241 234 234 / 0%);
-    backdrop-filter:blur(10px);
+    /* background:rgb(241 234 234 / 60%); */
+    /* backdrop-filter:blur(40px); */
     /* border:1px solid var(--line); */
-    border-radius:var(--radius);
-    padding:4px 22px 32px;
+    /* border-radius:var(--radius); */
+    padding:5px 22px 32px;
     box-sizing:border-box;
-    box-shadow:0 12px 40px rgba(0,0,0,.15);
+    /* box-shadow:0 12px 40px rgba(0,0,0,.15); */
     position:relative;
   }
+
+  .container {
+  background: rgba(255, 255, 255, 0.55);   /* light transparency */
+  backdrop-filter: blur(12px);             /* frosted glass */
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 22px;
+  /* padding: 2rem; */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+
 
 
 /* Utility class: center text when needed */
