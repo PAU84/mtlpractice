@@ -982,73 +982,103 @@ The belief that multiple, conflicting truths can coexist.</li></ul></div>
 </div>
 
 <script>
-  const bubble = document.getElementById('bubble');
-  const views  = { home:'#home', about:'#about', contact:'#contact', book:'#book', me:'#me' };
-  const homeBtn = document.getElementById('homeBtn');
-
-  function show(view){
-    bubble.setAttribute('data-view', view);
-    for (const id of Object.keys(views)){
-      document.querySelector(views[id]).classList.toggle('active', id === view);
+    // Main view handling
+    const bubble = document.getElementById('bubble');
+    const views  = { home:'#home', about:'#about', contact:'#contact', book:'#book', me:'#me' };
+    const homeBtn = document.getElementById('homeBtn'); // may be null (button is commented out)
+  
+    // 🔹 List of possible desktop background images
+    const desktopBackgrounds = [
+      "backg2.png",
+      "backg4.jpeg",
+      "backg5.jpeg",
+    //   "backg2.jpeg"
+    ];
+  
+    function setRandomDesktopBackground() {
+      // Only apply on desktop, match your CSS breakpoint
+      if (window.innerWidth >= 701) {
+        const randomImg =
+          desktopBackgrounds[Math.floor(Math.random() * desktopBackgrounds.length)];
+  
+        document.body.style.backgroundImage = `url("${randomImg}")`;
+        document.body.style.backgroundPosition = "center top";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundRepeat = "no-repeat";
+        document.body.style.backgroundAttachment = "fixed";
+      }
     }
-  }
-
-  document.addEventListener('click', (e)=>{
-  const link = e.target.closest('[data-nav]');
-  if(!link) return;
-  e.preventDefault();
-  const target = link.getAttribute('data-nav');
-  if(views[target]){
-    show(target);
-
-    // Scroll page back to top (works great on mobile)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  
+    function show(view){
+      bubble.setAttribute('data-view', view);
+      for (const id of Object.keys(views)){
+        document.querySelector(views[id]).classList.toggle('active', id === view);
+      }
+    }
+  
+    // Handle nav links (top + bottom + mobile)
+    document.addEventListener('click', (e)=>{
+      const link = e.target.closest('[data-nav]');
+      if(!link) return;
+      e.preventDefault();
+      const target = link.getAttribute('data-nav');
+      if(views[target]){
+        show(target);
+  
+        // Scroll page back to top (works great on mobile)
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     });
-  }
-});
-
-
-  homeBtn.addEventListener('click', ()=>{
-    location.hash = '';
-    show('home');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  function boot(){
-    const hash = location.hash.replace('#','');
-    show(views[hash] ? hash : 'home');
-  }
-  window.addEventListener('hashchange', boot);
-  boot();
-
-  /* ====== Modal for certificates ====== */
-  const modal = document.getElementById('imgModal');
-  const modalImg = document.getElementById('modalImage');
-  const closeModal = document.getElementById('closeModal');
-
-  // open on any certificate click
-  document.querySelectorAll('.cert-img').forEach(img=>{
-    img.addEventListener('click', ()=>{
-      const src = img.getAttribute('data-full') || img.src;
-      modalImg.src = src;
-      modalImg.alt = img.alt || 'Full-size image';
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
+  
+    // Optional Home button (currently commented out in HTML)
+    if (homeBtn) {
+      homeBtn.addEventListener('click', ()=>{
+        location.hash = '';
+        show('home');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  
+    function boot(){
+      const hash = location.hash.replace('#','');
+      show(views[hash] ? hash : 'home');
+      setRandomDesktopBackground();  // 🎲 randomize background on initial load / hash changes
+    }
+  
+    window.addEventListener('hashchange', boot);
+    boot();
+  
+    /* ====== Modal for certificates ====== */
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+  
+    // open on any certificate click
+    document.querySelectorAll('.cert-img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        const src = img.getAttribute('data-full') || img.src;
+        modalImg.src = src;
+        modalImg.alt = img.alt || 'Full-size image';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+      });
     });
-  });
-
-  // close actions
-  function hideModal(){
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden','true');
-    modalImg.src = '';
-  }
-  closeModal.addEventListener('click', hideModal);
-  modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
-</script>
+  
+    // close actions
+    function hideModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      modalImg.src = '';
+    }
+  
+    closeModal.addEventListener('click', hideModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
+  </script>
+  
 
 </body>
 </html>
