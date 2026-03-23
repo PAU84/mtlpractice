@@ -150,6 +150,10 @@
     height:20px;
     opacity:.95;
   }
+  /* Closed state should show only the globe (no current language text). */
+  .lang-switch__toggle #langCurrentLabel{
+    display:none;
+  }
   .lang-switch__menu{
     position:absolute;
     top:calc(100% + 8px);
@@ -786,9 +790,10 @@ a {
         <span id="langCurrentLabel">English</span>
       </button>
       <ul class="lang-switch__menu" id="langMenu" role="listbox" aria-labelledby="langToggle" hidden>
-        <li role="presentation"><button type="button" role="option" data-lang="gl" id="lang-opt-gl">Galego</button></li>
-        <li role="presentation"><button type="button" role="option" data-lang="es" id="lang-opt-es">Español</button></li>
         <li role="presentation"><button type="button" role="option" data-lang="en" id="lang-opt-en">English</button></li>
+        <li role="presentation"><button type="button" role="option" data-lang="es" id="lang-opt-es">Español</button></li>
+
+        <li role="presentation"><button type="button" role="option" data-lang="gl" id="lang-opt-gl">Galego</button></li>
       </ul>
     </div>
   </div>
@@ -1306,7 +1311,7 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
         required
       ></textarea>
 
-      <button class="btn" type="submit">Reserva Gratuita</button>
+      <button class="btn" type="submit">Enviar</button>
     </form>
 
     <br>
@@ -1372,7 +1377,7 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     required
   ></textarea>
 
-  <button class="btn" type="submit">Reserva Gratuita</button>
+  <button class="btn" type="submit">Enviar</button>
 </form>
 
 <br>
@@ -1631,7 +1636,7 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
 
     /* ====== Language selector (Galego / Español / English) ====== */
     const LANG_STORAGE = 'mtl-lang';
-    const LANG_LABELS = { gl: 'Galego', es: 'Español', en: 'English' };
+    const LANG_LABELS = { gl: 'Gz', es: 'Esp', en: 'Eng' };
     const langSwitch = document.getElementById('langSwitch');
     const langToggle = document.getElementById('langToggle');
     const langMenu = document.getElementById('langMenu');
