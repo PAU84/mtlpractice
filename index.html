@@ -87,13 +87,148 @@
     border-radius:0;
     background:transparent;
   }
+
+  /* Book + language row (mobile: below logo, one line). Desktop: fixed top-right, book hidden. */
+  .top-actions{
+    position:fixed;
+    top:12px;
+    right:12px;
+    z-index:30;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-end;
+    gap:10px;
+    font-family: Inter, Helvetica, sans-serif;
+    pointer-events:none;
+  }
+  .top-actions > *{ pointer-events:auto; }
+
+  .mobile-top-row{
+    display:block;
+  }
+
+  .lang-switch{
+    position:relative;
+    font-family: inherit;
+  }
+  .lang-switch__toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    padding:8px 12px;
+    min-height:44px;
+    min-width:44px;
+    box-sizing:border-box;
+    border:1px solid var(--line);
+    border-radius:25px;
+    background:#2a5656;
+    color:#f3f1ef;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow:0 2px 10px rgba(0,0,0,.12);
+    transition:transform .15s, box-shadow .15s, background .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .lang-switch__toggle:hover{
+    background:#356b6b;
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+  }
+  .lang-switch__toggle:focus-visible{
+    outline:2px solid #f1df97;
+    outline-offset:2px;
+  }
+  .lang-switch__toggle[aria-expanded="true"]{
+    background:#356b6b;
+  }
+  .lang-switch__globe{
+    flex-shrink:0;
+    width:20px;
+    height:20px;
+    opacity:.95;
+  }
+  .lang-switch__menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    margin:0;
+    padding:6px;
+    list-style:none;
+    min-width:min(200px, calc(100vw - 32px));
+    background:#2a5656;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:16px;
+    box-shadow:0 12px 32px rgba(0,0,0,.22);
+    display:none;
+    z-index:80;
+  }
+  .lang-switch.is-open .lang-switch__menu{ display:block; }
+  .lang-switch__menu button{
+    display:block;
+    width:100%;
+    margin:0;
+    padding:10px 14px;
+    border:none;
+    border-radius:10px;
+    background:transparent;
+    color:#f3f1ef;
+    font:inherit;
+    font-weight:600;
+    font-size:15px;
+    text-align:left;
+    cursor:pointer;
+    transition:background .15s;
+  }
+  .lang-switch__menu button:hover,
+  .lang-switch__menu button:focus-visible{
+    background:rgba(255,255,255,.12);
+    outline:none;
+  }
+  .lang-switch__menu button[aria-selected="true"]{
+    background:rgba(241,223,151,.2);
+    color:#f1df97;
+  }
+  @media (max-width:700px){
+    .mobile-top-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px 0;
+      width:100%;
+      box-sizing:border-box;
+    }
+    .top-actions{
+      position:static;
+      width:auto;
+      max-width:none;
+      box-sizing:border-box;
+      justify-content:flex-end;
+      align-items:center;
+      gap:10px;
+      flex-wrap:nowrap;
+      padding:0;
+      margin:0;
+      z-index:60;
+    }
+    .lang-switch{
+      flex-shrink:0;
+    }
+    .lang-switch__toggle{
+      padding:8px 10px;
+      font-size:14px;
+    }
+  }
   
   /* Mobile: smaller logo, still fixed */
   @media (max-width:700px){
     .site-logo img{
       width:28vw;
       max-width:96px;
-      position:absolute !important;
+      position: static !important;
     }
   }
   
@@ -335,9 +470,7 @@ p.p-center {
 /* Mobile: force fixed positioning + smaller image */
 @media (max-width:700px){
   .site-logo{
-    position: absolute !important;
-    top:12px !important;
-    left:12px !important;
+    position: static !important;
   }
   .site-logo img{
     width:28vw;
@@ -489,22 +622,20 @@ p.p-center {
   }
 }
 
-/* Hidden by default (desktop) */
+/* Hidden by default (desktop); shown inside .top-actions on mobile */
 .mobile-book-btn{
   display:none;
 }
 
 /* Mobile layout tweaks */
 @media (max-width:700px){
-  /* Show mobile Book button, centered under logo */
   .mobile-book-btn{
-    display:inline;
-    margin: 70px auto 10px;  /* space below fixed logo */
+    display:inline-flex;
+    align-items:center;
     justify-content:center;
-    margin-top:20px;
-    margin-left:120px;
+    margin:0;
     min-width:150px;
-    /* margin-top:-2px; */
+    flex:0 1 auto;
   }
 
   /* Hide the entire top nav on mobile; we'll use bottom nav + mobile button */
@@ -517,7 +648,7 @@ p.p-center {
     display:flex;
   }
 
-  /* Bring the main content higher now that the Book button is outside .wrap */
+  /* Book + lang row provides top spacing; less padding on main column */
   .wrap{
     padding: 16px 10px 24px;
   }
@@ -536,6 +667,10 @@ p.p-center {
   padding: 0;
   -webkit-appearance: none;
   appearance: none;
+}
+/* Author display rules (e.g. .welcome-audio { display:block }) must not beat the hidden attribute */
+[data-lang-only][hidden] {
+  display: none !important;
 }
 audio::-webkit-media-controls-panel {
   background-color: transparent !important;
@@ -621,26 +756,73 @@ a {
 </head>
 <body>
 
-<!-- Top-left logo -->
-<a class="site-logo" href="#" aria-label="Go to home" onclick="location.hash=''; show('home'); return false;">
-  <img src="logo.png" alt="MTL Practice logo">
-</a>
+<!--
+  Per-language content (easy pattern):
+  • Add data-lang-only="en" | "gl" | "es" on any element. Space-separated = show for any of them,
+    e.g. data-lang-only="en gl".
+  • Elements WITHOUT data-lang-only are always visible in every language.
+  • Hidden blocks use the hidden attribute; <audio>/<video> are paused when hidden.
+  • Duplicate a whole <section> or <p>, or wrap fragments:
+      <a data-nav="me" href="#me" class="link-btn"><span data-lang-only="en">Meet The Coach</span><span data-lang-only="es" hidden>Conoce a la coach</span></a>
+  • For audio, use one <audio data-lang-only="…"> per file (see welcome block below).
+-->
 
-<!-- Mobile Book button (centered under logo) -->
-<a class="mobile-book-btn link-btn" data-nav="book" href="#book">
-    Book <span class="link-btn-free">FREE</span> Call
+<div class="mobile-top-row">
+  <!-- Top-left logo -->
+  <a class="site-logo" href="#" aria-label="Go to home" onclick="location.hash=''; show('home'); return false;">
+    <img src="logo.png" alt="MTL Practice logo">
   </a>
+
+  <div class="top-actions">
+    <a class="mobile-book-btn link-btn" data-nav="book" href="#book">
+      Book <span class="link-btn-free">FREE</span> Call
+    </a>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" class="lang-switch__toggle" id="langToggle" aria-expanded="false" aria-haspopup="listbox" aria-controls="langMenu" aria-label="Choose language">
+        <svg class="lang-switch__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <span id="langCurrentLabel">English</span>
+      </button>
+      <ul class="lang-switch__menu" id="langMenu" role="listbox" aria-labelledby="langToggle" hidden>
+        <li role="presentation"><button type="button" role="option" data-lang="gl" id="lang-opt-gl">Galego</button></li>
+        <li role="presentation"><button type="button" role="option" data-lang="es" id="lang-opt-es">Español</button></li>
+        <li role="presentation"><button type="button" role="option" data-lang="en" id="lang-opt-en">English</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <div class="wrap">
   <!-- Nav Buttons -->
    <!-- Top Nav Buttons (always visible, but trimmed on mobile) -->
+   <span data-lang-only="en">
    <nav class="actions actions-top" aria-label="Section navigation">
     <a data-nav="book"  href="#book"   class="link-btn">Book <span class="link-btn-free">FREE</span> Call</a>
+
     <a data-nav="me"    href="#me"     class="link-btn">Meet The Coach</a>
     <a data-nav="about" href="#about"  class="link-btn">About Coaching</a>
     <a data-nav="contact" href="#contact" class="link-btn">Contact Me</a>
   </nav>
+</span>
+<span data-lang-only="gl">
+  <nav class="actions actions-top" aria-label="Section navigation">
+    <a data-nav="book"  href="#book"   class="link-btn">Reserva <span class="link-btn-free">Gratuita</span></a>
+    <a data-nav="me"    href="#me"     class="link-btn">Sobre min</a>
+    <a data-nav="about" href="#about"  class="link-btn">O Coaching</a>
+    <a data-nav="contact" href="#contact" class="link-btn">Contacto</a>
+  </nav>  
+</span>
+<span data-lang-only="es">
+  <nav class="actions actions-top" aria-label="Section navigation">
+    <a data-nav="book"  href="#book"   class="link-btn">Reserva <span class="link-btn-free">Gratuita</span></a>
 
+    <a data-nav="me"    href="#me"     class="link-btn">Sobre min</a>
+    <a data-nav="about" href="#about"  class="link-btn">El Coaching</a>
+    <a data-nav="contact" href="#contact" class="link-btn">Contacto</a>
+  </nav>  
+</span>
 
   <main class="container" id="bubble" data-view="home" aria-live="polite">
     <div class="topbar">
@@ -648,15 +830,35 @@ a {
     </div>
 
     <h1>MTL PRACTICE</h1>
-    <div class="tagline">Intimacy, Relationship & Identity Coaching</div>
+    <span data-lang-only="en">
+      <div class="tagline">Intimacy, Relationship & Identity Coaching</div></span>  
+      <span data-lang-only="gl">
+        <div class="tagline">Coaching de Intimidade, Relacións e Identidade  </div></span>
+      <span data-lang-only="es">
+        <div class="tagline">Coaching de Intimidad, Relaciones e Identidad
+      </div></span>
+
  <p class="lead p-center">
-A Welcome Note from Coach Pau
-  <!-- Audio welcome message -->
-  <audio class="welcome-audio" controls preload="none">
+  <!-- One block per language; add files welcome-audio-gl.m4a / welcome-audio-es.m4a when ready -->
+  <span data-lang-only="en">A Welcome Note from Coach Pau</span>
+  <span data-lang-only="gl" hidden>Nota de benvida da adestradora Pau</span>
+  <span data-lang-only="es" hidden>Una Nota de Bienvenida de Coach Pau
+  </span>
+  <audio class="welcome-audio" controls preload="none" data-lang-only="en">
     <source src="welcomeaudio.m4a" type="audio/mp4" />
     Your browser does not support the audio element.
   </audio>
+  <audio class="welcome-audio" controls preload="none" data-lang-only="gl" hidden>
+    <source src="GaliciaWelcome.m4a" type="audio/mp4" />
+    O teu navegador non reproduce audio.
+  </audio>
+  <audio class="welcome-audio" controls preload="none" data-lang-only="es" hidden>
+    <source src="SpanishWelcome.m4a" type="audio/mp4" />
+    Tu navegador no reproduce audio.
+  </audio>
 </p>
+
+<span data-lang-only="en">
     <!-- Home -->
     <section class="view active" id="home">
      
@@ -711,8 +913,231 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
         <p class="lead"><b>A note on safety:</b> I prefer to use the term “healing-oriented space” instead of “safe space” because I can commit to a healing-oriented space shaped by intention, accountability, and repair, but I cannot commit to an ideal of perfect safety… that’s humanly impossible! </p>
         
     </section>
+  </span>
+
+
+
+
+  <span data-lang-only="gl">
+    <!-- Home -->
+    <section class="view active" id="home">
+     
+
+      <p class="lead">
+        <b>Douche a benvida á Terra das Múltiples Verdades!  </b></p> 
+      <p class="lead">
+        Grazas por dedicar tempo, enerxía e recursos a este traballo. O meu papel como coach é apoiar o teu autocoñecemento, o benestar íntimo e a túa liberación, honrando a túa autonomía e experiencias vividas. Estou aquí para te axudar a honrar a túa plena humanidade e a humanidade das demais persoas.  
+
+      </p>
+      <p class="lead"><b>
+        A miña práctica está enraizada en:</b>
+      </p>
+      <div class="centered-list">
+        <ul>
+          <li>A interdependencia e o poder compartido.  </li>
+          <li>A descolonización, o traballo interno de desaprender as lóxicas coloniais, como o cuestionamento do pensamento binario.  
+          </li>
+          <li>A anti-opresión mediante a abolición de todos os sistemas que restrinxan a curación, o pracer, o desexo, a autoexpresión e a liberación.  
+
+            <li>
+              O crecemento persoal accesible, eliminando barreiras para que todas as persoas poidan alcanzar o seu potencial: desde a flexibilidade económica, ata adaptar o meu coaching a diversas capacidades, así como ofrecer sesións principalmente en inglés, galego e castelán.  
+            </li><li>A teoría das múltiples verdades: a verdade é multidimensional, polo que unha soa realidade pode ter moitas interpretacións válidas, ás veces conflitivas, dependendo da perspectiva e do contexto.  
+            </li>
+        </ul>
+      </div>
+      <p class="lead">
+        O meu traballo non é neutro. É un rexeitamento a replicar sistemas de control e castigo, sen consenso, baixo a aparencia de profesionalidade. Concibo a miña práctica como un espazo de responsabilidade compartida, construído sobre o coidado, o crecemento e o respecto, dedicado á nosa curación, educación, resistencia e pracer. O obxectivo primordial é a liberación de TODOS os seres.      </p>
+    </section>
+</span>
+
+
+    <!-- About / Coaching -->
+    <section class="view" id="about">
+      <span data-lang-only="en">
+
+     
+        <p class="lead"><b>What is Sexistential Coaching?</b></p>
+        <p class="lead">It’s <b>intimacy, relationship, identity, and sex coaching that supports your full human experience through the lens of sexuality.</b> Sexuality is deeper than sex: it's about our innate need for connection, pleasure, belonging, and embodiment.
+        We live in a society obsessed with sex yet terrified of talking about it honestly. This creates shame and inauthenticity. My coaching brings these "forbidden" topics into the light to liberate you, and therefore, us -humanity.</p>
+        <p class="lead"><b>In our sessions, we will work towards removing the obstacles you identify as your current “problems” by:</b></p>
+        <div class="centered-list">
+            <ul>
+              <li>Exploring your desires, boundaries, and beliefs in a healing-oriented, non-judgmental space.</li>
+        <li>Practicing communication and tune into your mind, body, and essence/soul/spirit.</li>
+       <li>Learning techniques for (more) pleasure and connection with yourself and others.</li>
+    <li>Setting intentions and building skills without diagnosis or "fixing."
+    </li></ul></div>
+    <p class="lead"><b>Attention! This is not therapy.</b> And you ask, “Wait! What’s the difference then?” In short: Coaching is present- and future-focused on education and action (e.g., “What happened with my libido?”, "How can I feel relaxed in a sexual encounter?”, “How can I build the sex life I want with my partner/s?"). Therapy addresses deeper mental health and past trauma (e.g., "Why don’t I feel sexual at all now?”, “Why am I struggling in sexual encounters and what deeper healing is needed?", “Why don’t I have a fulfilling sexual life with my partner/s?”). <b>Coaching and Therapy are 100% compatible and complement each other extremely well.</b></b> </p>
+
+        <p class="lead"><b>What can Sexistential Coaching do for you?</b></p>
+         <p class="lead">Improve communication, reclaim pleasure, explore your gender identity and expression, understand your desires, build confidence, navigate life changes, learn practical skills, etc. In short: <b>remove obstacles related to your sexual self.</b> And what does “sexual self” encapsulate? Who you are sexually and in relation to others, what you feel (desire, pleasure, fear, shame, joy), what you believe (ethics, values, stories), what you do (communication, practices, behaviors), and how you connect to your own body, to your culture, and to partner/s.  
+        </p>
+            <p class="lead">Please note: <b>No nudity or sexual activity take place in sessions.</b></p>
+        <p class="lead"><b>A note on safety:</b> I prefer to use the term “healing-oriented space” instead of “safe space” because I can commit to a healing-oriented space shaped by intention, accountability, and repair, but I cannot commit to an ideal of perfect safety… that’s humanly impossible! </p>
+        </span>
+
+
+
+        <span data-lang-only="es">
+
+     
+          <p class="lead"><b>¿Qué es el “Sexistencial Coaching”?</b></p>
+          <p class="lead">Es un coaching en intimidad, relaciones, identidad y sexualidad que apoya tu experiencia humana global a través de la lente de la sexualidad. La sexualidad es más profunda que el sexo: trata de nuestras necesidades innatas de conexión, placer, pertenencia e integración corporal. Vivimos en una sociedad obsesionada con el sexo pero aterrorizada de hablar de él con honestidad. Esto crea vergüenza e inautenticidad. Mi coaching trae estos temas tabú a la luz para liberarte a ti, y así, a la humanidad.
+          </p>
+          <p class="lead"><b>En nuestras sesiones, trabajaremos para eliminar los obstáculos que identifiques como tus "problemas" actuales mediante:</b></p>
+          <div class="centered-list">
+              <ul>
+                <li>Exploración de tus deseos, límites y creencias en un espacio orientado a la curación y sin juicios.</li>
+          <li>Práctica de la comunicación y sintonización con tu mente, cuerpo y esencia/alma/espíritu.</li>
+         <li>Aprendizaje de técnicas para (más) placer y conexión contigo y con las demás personas.</li>
+      <li>Definición de intenciones y desarrollo de habilidades sin diagnóstico ni "arreglo".
+      </li></ul></div>
+      <p class="lead"><b>¡Atención! Esto no es terapia</b>. Y te preguntarás: “¡Espera! ¿Cuál es la diferencia entonces?” En resumen: el coaching se centra en el presente y en el futuro, en la educación y la acción (p. ej., “¿Qué pasó con mi libido?”, "¿Cómo puedo relajarme en un encuentro sexual?”, “¿Cómo puedo construir la vida sexual que quiero con mi/s pareja/s?”). La terapia aborda problemas de salud mental más profundos y traumas del pasado (p. ej., "¿Por qué no me siento sexual en absoluto ahora?”, “¿Por qué tengo dificultades en los encuentros sexuales y qué curación más profunda se necesita?”, “¿Por qué no tengo una vida sexual satisfactoria con mi/s pareja/s?”). <b>El coaching y la terapia son 100% compatibles y se complementan extraordinariamente bien entre ellas. </b></p>
+  
+          <p class="lead"><b>¿Qué puede hacer por ti el “Sexistencial Coaching”?
+            </b></p>
+           <p class="lead">Mejorar la comunicación, reclamar el placer, explorar tu identidad y expresión de género, entender tus deseos, construir confianza, navegar cambios vitales, aprender habilidades prácticas, etc. En resumen: eliminar obstáculos relacionados con tu yo sexual. ¿Y qué abarca el "yo sexual"? Quién eres sexualmente y en relación a las demás personas, qué sientes (deseo, placer, miedo, vergüenza, alegría), en qué crees (ética, valores, historias), lo que haces (comunicación, prácticas, comportamientos), y cómo te conectas con tu propio cuerpo, con tu cultura y con tu/s pareja/s.
+
+          </p>
+              <p class="lead">Nota: no hay desnudez ni actividad sexual en las sesiones.
+              </p>
+          <p class="lead"><b>Una nota sobre seguridad:</b> prefiero usar el término “espacio orientado a la curación” en lugar de “espacio seguro” porque puedo comprometerme con un espacio de curación conformado por la intención, la responsabilidad y la reparación, pero no puedo comprometerme con un ideal de seguridad perfecta… ¡eso es humanamente imposible!</p>
+          </span>
+    </section>
+
+
+
+<span data-lang-only="en">
+    <!-- Home -->
+    <section class="view active" id="home">
+     
+
+      <p class="lead">
+        <b>Welcome to Multiple Truths Land Practice!</b></p> 
+      <p class="lead">
+          Thank you for taking the time, energy, and resources to engage in this work. My role as your coach is to <b>support your self-knowledge, intimacy wellbeing, and liberation, honoring your autonomy and lived experiences.</b> I am here to help you honor your full humanity and the humanity of others.
+
+      </p>
+      <p class="lead"><b>
+        My practice is rooted in:</b>
+      </p>
+      <div class="centered-list">
+        <ul>
+          <li>Interdependency and shared power.</li>
+          <li>Uncolonization and challenging binary thinking.</li>
+          <li>Anti-oppression through abolishing all systems that constrain healing, pleasure, desire, self-expression, and liberation.</li>
+
+            <li>
+            Accessible growth, removing barriers so that everyone can pursue their potential: from financial flexibility, to tailoring my coaching to diverse abilities, as well as, offering sessions mainly in English, Galician and Spanish.
+   </li><li>The multiple truths theory: truth is multidimensional, so a single reality can have many valid, sometimes conflicting, interpretations depending on perspective and context.
+</li>
+        </ul>
+      </div>
+      <p class="lead">
+My work is not neutral. It is a refusal to replicate systems of non-consensual control and punishment under the guise of professionalism. I hold my practice as a space of shared responsibility, built on care, growth, and respect, dedicated to our healing, education, resistance, and pleasure. Liberation of All is the ultimate goal.
+      </p>
+    </section>
+
+    <!-- About / Coaching -->
+    <section class="view" id="about">
+
+     
+        <p class="lead"><b>What is Sexistential Coaching?</b></p>
+        <p class="lead">It’s <b>intimacy, relationship, identity, and sex coaching that supports your full human experience through the lens of sexuality.</b> Sexuality is deeper than sex: it's about our innate need for connection, pleasure, belonging, and embodiment.
+        We live in a society obsessed with sex yet terrified of talking about it honestly. This creates shame and inauthenticity. My coaching brings these "forbidden" topics into the light to liberate you, and therefore, us -humanity.</p>
+        <p class="lead"><b>In our sessions, we will work towards removing the obstacles you identify as your current “problems” by:</b></p>
+        <div class="centered-list">
+            <ul>
+              <li>Exploring your desires, boundaries, and beliefs in a healing-oriented, non-judgmental space.</li>
+        <li>Practicing communication and tune into your mind, body, and essence/soul/spirit.</li>
+       <li>Learning techniques for (more) pleasure and connection with yourself and others.</li>
+    <li>Setting intentions and building skills without diagnosis or "fixing."
+    </li></ul></div>
+    <p class="lead"><b>Attention! This is not therapy.</b> And you ask, “Wait! What’s the difference then?” In short: Coaching is present- and future-focused on education and action (e.g., “What happened with my libido?”, "How can I feel relaxed in a sexual encounter?”, “How can I build the sex life I want with my partner/s?"). Therapy addresses deeper mental health and past trauma (e.g., "Why don’t I feel sexual at all now?”, “Why am I struggling in sexual encounters and what deeper healing is needed?", “Why don’t I have a fulfilling sexual life with my partner/s?”). <b>Coaching and Therapy are 100% compatible and complement each other extremely well.</b></b> </p>
+
+        <p class="lead"><b>What can Sexistential Coaching do for you?</b></p>
+         <p class="lead">Improve communication, reclaim pleasure, explore your gender identity and expression, understand your desires, build confidence, navigate life changes, learn practical skills, etc. In short: <b>remove obstacles related to your sexual self.</b> And what does “sexual self” encapsulate? Who you are sexually and in relation to others, what you feel (desire, pleasure, fear, shame, joy), what you believe (ethics, values, stories), what you do (communication, practices, behaviors), and how you connect to your own body, to your culture, and to partner/s.  
+        </p>
+            <p class="lead">Please note: <b>No nudity or sexual activity take place in sessions.</b></p>
+        <p class="lead"><b>A note on safety:</b> I prefer to use the term “healing-oriented space” instead of “safe space” because I can commit to a healing-oriented space shaped by intention, accountability, and repair, but I cannot commit to an ideal of perfect safety… that’s humanly impossible! </p>
+        
+    </section>
+  </span>
+
+
+
+    <section class="view" id="about">
+      <span data-lang-only="gl">
+
+     
+        <p class="lead"><b>Que é o “Sexistencial Coaching”?         </b></p>
+        <p class="lead">É un coaching de intimidade, relacións, identidade e sexualidade que apoia a túa experiencia humana global a través da lente da sexualidade. A sexualidade é máis profunda que o sexo: trata das nosas necesidades innatas de conexión, pracer, pertenza e integración corporal. Vivimos nunha sociedade obsesionada co sexo pero aterrorizada de falar del con honestidade. Isto crea vergoña e inautenticidade. O meu coaching trae estes temas tabú á luz para liberarte a ti, e así, á humanidade.  
+        </p>
+        <p class="lead"><b>Nas nosas sesións, traballaremos para eliminar os obstáculos que identifiques como os teus "problemas" actuais mediante:  </b></p>
+        <div class="centered-list">
+            <ul>
+              <li>Exploración dos teus desexos, límites e crenzas nun espazo orientado á curación e sen xuízos. </li>
+        <li>Practica da comunicación e sintonización coa túa mente, corpo e esencia/alma/espírito. </li>
+       <li>Aprendizaxe de técnicas para (máis) pracer e conexión contigo e coas demais persoas.  </li>
+    <li>Definición de intencións e desenvolvemento de habilidades sen diagnóstico nin "arranxo".  
+    </li></ul></div>
+    <p class="lead">Atención! Isto non é terapia. E ti preguntaraste: “Agarda! Cal é a diferenza entón?” En resumo: o coaching céntrase no presente e no futuro, na educación e a acción (p.ex., “Que pasou coa miña libido?”, "Como podo relaxarme nun encontro sexual?”, “Como podo construír a vida sexual que quero coa/s miña/s parella/s?”). A terapia aborda problemas de saúde mental máis profundos e traumas do pasado (p.ex., "Por que non me sinto sexual en absoluto agora?”, “Por que teño dificultades nos encontros sexuais e que curación máis profunda se precisa?”, “Por que non teño unha vida sexual satisfactoria coa/s miña/s parella/s?”). O coaching e a terapia son 100% compatibles e compleméntanse extraordinariamente ben entre elas.  </p>
+
+        <p class="lead"><b>Que pode facer por ti o “Sexistencial Coaching”? 
+        </b></p>
+         <p class="lead">Mellorar a comunicación, reclamar o pracer, explorar a túa identidade e expresión de xénero, entender os teus desexos, construír confianza, navegar cambios vitais, aprender habilidades prácticas, etc. En resumo: eliminar obstáculos relacionados co teu eu sexual. E que abrangue o "eu sexual"? Quen es sexualmente e en relación ás demais, que sentes (desexo, pracer, medo, vergoña, alegría), no que cres (ética, valores, historias), o que fas (comunicación, prácticas, comportamentos), e como te conectas co teu propio corpo, coa túa cultura e coa/s túa/s parella/s.  
+ 
+        </p>
+            <p class="lead">Nota: non hai nudez nin actividade sexual nas sesións.  
+            </b></p>
+        <p class="lead">Unha nota sobre seguridade: prefiro usar o termo “espazo orientado á curación” no canto de “espazo seguro” porque podo comprometerme cun espazo de curación conformado pola intención, a responsabilidade e a reparación, pero non podo comprometerme cun ideal de seguridade perfecta… ¡iso é humanamente imposible!  </p>
+        </span>
+    </section>
+
+
+  </span>
+
+  <span data-lang-only="es">
+    <!-- Home -->
+    <section class="view active" id="home">
+     
+
+      <p class="lead">
+        <b>¡Te doy la bienvenida a la Tierra de las Múltiples Verdades!
+        </b></p> 
+      <p class="lead">
+        Gracias por dedicar tiempo, energía y recursos a este trabajo. Mi rol como coach es <b>apoyar tu autoconocimiento, tu bienestar íntimo y tu liberación, honrando tu autonomía y tus experiencias vividas</b>. Estoy aquí para ayudarte a honrar tu plena humanidad y la humanidad de las demás personas.
+
+      </p>
+      <p class="lead"><b>
+        Mi práctica está enraizada en:
+      </b>
+      </p>
+      <div class="centered-list">
+        <ul>
+          <li>La interdependencia y el poder compartido.
+          </li>
+          <li>La descolonización, el trabajo interno de desaprender las lógicas coloniales, como el cuestionamiento del pensamiento binario.
+          </li>
+          <li>La anti-opresión, mediante la abolición de todos los sistemas que restrinjan la curación, el placer, el deseo, la autoexpresión y la liberación.
+          </li>
+
+            <li>
+              El crecimiento personal accesible, eliminando barreras para que todas las personas puedan alcanzar su potencial: desde la flexibilidad económica, adaptar mi coaching a diversas capacidades, así como ofrecer sesiones principalmente en inglés, gallego y español.
+
+   </li><li>La teoría de las múltiples verdades: la verdad es multidimensional, por lo que una sola realidad puede tener muchas interpretaciones válidas, a veces en conflicto, dependiendo de la perspectiva y del contexto.
+
+</li>
+        </ul>
+      </div>
+      <p class="lead">
+        Mi trabajo no es neutral. Rechazo reproducir sistemas de control y castigo, sin consenso, bajo la apariencia de profesionalidad. Concibo mi práctica como un espacio de responsabilidad compartida, construido sobre el cuidado, el crecimiento y el respeto, dedicado a nuestra curación, educación, resistencia y placer. El objetivo primordial es la liberación de TODOS los seres.
+      </p>
+    </section>
+</span>
 
     <!-- Meet the Coach -->
+    <span data-lang-only="en">
     <section class="view" id="me">
 
         <p class="lead"><b>About Coach Pau</b></p>
@@ -728,9 +1153,60 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     </p>
    
     </section>
+</span>
+
+  <section class="view" id="me">
+    <span data-lang-only="gl">
+    <p class="lead"><b>Coñece a Coach Pau:
+    </b></p>
+    <p class="lead">A <b>foto ausente</b> é intencionada -son unha persoa real, palabrita del Niño Jesús! Cuestionemos o que é considerado “profesional" e non. Libre de xuízos, que é o realmente importante a hora de escoller un profesional: as aparencias, os títulos, o auténtico aliñamento das súas capacidades coas túas necesidades, ou calquera combinación destas? </p>
+    <p class="lead">A miña traxectoria foi marcada pola emigración -recompilando un mosaico de traballos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturais-, e unha profunda crenza na reinvención e no crecemento. Alén diso, un accidente cambiou a miña vida e presentoume á discapacidade invisible e á dor crónica, facendo das <b>prácticas somáticas e corporizadas</b> (reconexión co momento presente) unha ferramenta crucial de supervivencia para min. A través de todo isto, o meu núcleo permanece: son fronteirize e con avós pescadores; o océano, o meu provedor, ensinoume que existe un poder maior que todas nós, e a fronteira que as culturas diferentes comparten unha soa humanidade.  
+
+</p>      <p class="lead">Por todo isto, <b>non fago coaching desde un libro de texto senón desde “o medio”</b>: un espazo que habito a través da miña identidade non binaria, que se expande máis aló do xénero, tendendo pontes entre a sabedoría guiada polo corazón e a acción estratéxica, o pensamento colectivo e a soidade honrada, e o humor alegre e o silencio reverente e compasivo.  
+</p>
+    <p class="lead">A miña formación: teño <b>dobre acreditación en sexoloxía e en sex coaching polo Colexio Americano de Sexoloxía (ABS) e Sex Coach U respectivamente</b>. As miñas mentoras din que fago coaching desde un lugar de integridade e corazón. <b>O meu estilo é unha mestura de guía empática, e de comunicación transparente que apoia con verdades honestas.</b> Especialízome en crear un espazo orientado á curación onde poidas sentir seguridade para facer un traballo valente e medrar.  
+    </p>
+     <p class="lead"><b>Cando non estou a traballar</b>, podes atoparme bailando ritmos afrolatinos, nunha colchoneta de artes marciais, coidando das miñas numerosas plantas ou nunha ruta de sendeirismo.  <p>                      
+    <p class="lead"><b>Posicionalidade:</b> Percíbeseme como persoa branca, non discapacitada, cis e hetero e teño unha aparencia aliñada cos estándares de beleza predominantes, o que me dá un poder non gañado. Ademais, nacín nun antigo imperio global, tiven acceso a educación universitaria e podo acceder á miña terra ancestral. Teño acceso a vivenda, comida, auga limpa, medicina e outras necesidades diarias e, neste momento, estou estable mental e economicamente. Navego a opresión a través dalgunhas das miñas identidades e experiencias: nacín nunha nación sen estado baixo a administración dun imperio interno moderno, crieime nunha zona periurbana, sendo falante de galego. Tamén son SFAN (persoa á que se lle asignou sexo feminino ao nacer), persoa non binaria, persoa queer, inmigrante que tivo que aprender inglés como terceira lingua, persoa con discapacidade invisible e son un ser humano que coida das persoas e do planeta mentres navega o capitalismo.  
+
+    </p>
+     <p class="lead">Camiño cunha verdade sagrada: ofrezo a miña perspectiva única, sabendo que <b>a miña sabedoría non é orixinal</b> , senón un tapiz tecido polas persoas que viviron antes ca min e polas terras e comunidades que me nutriron. Ademais, <b>esta consulta é unha homenaxe á memoria dos meus avós maternos</b>, Abuelo Paulino con quen compartín o meu amor pola xeografía e o humor, e Abuela Aurita que sempre soubo e aceptou quen son de verdade e fixo de Paulino unha mellor persoa. Por todo isto, o meu agradecemento é eterno.
+    </p>
+    <p class="lead"><b>En resumo</b>, son unha guía profesional para a túa viaxe de volta á tua esencia e á colectividade. Fixen e continuo a facer o meu propio traballo para acompañarte ben no camiño. Gustaríame moito colaborar contigo! 
+</p>
+</span>
+</section>
+ 
+  <span data-lang-only="es">
+    <section class="view" id="me">
+
+      <p class="lead"><b>Conoce a Coach Pau:
+      </b></p>
+      <p class="lead">
+        La <b>foto ausente</b> es intencionada -¡soy una persona real, palabrita del Niño Jesús! Cuestionemos lo que es considerado "profesional" y lo que no. Sin juicios, ¿qué es realmente importante al elegir a un profesional? ¿Las apariencias, los títulos, el auténtico alineamiento de sus capacidades con tus necesidades, o cualquier combinación de estas?</p>
+       <p class="lead">Mi trayectoria ha estado marcada por la emigración —reuniendo un mosaico de trabajos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturales— y una profunda creencia en la reinvención y el crecimiento. Además, un accidente cambió mi vida y me presentó a la discapacidad invisible y al dolor crónico, haciendo de las prácticas somáticas y corporizadas (reconexión con el momento presente) una herramienta crucial de supervivencia para mí. A través de todo esto, mi núcleo permanece: soy una persona no binaria y con abuelos pescadores; el océano, mi proveedor, me enseñó que existe un poder mayor que todas nosotras, y que la frontera que las culturas diferentes comparten una sola humanidad.
+      </p>
+   <p class="lead">Por todo ello, <b>no hago coaching desde un libro de texto sino desde "el medio"</b>: un espacio que habito a través de mi identidad no binaria, que se expande más allá del género, tendiendo puentes entre la sabiduría guiada por el corazón y la acción estratégica, el pensamiento colectivo y la soledad honrada, y el humor alegre y el silencio reverente y compasivo.
+
+</p>
+      <p class="lead">Mi formación: tengo <b>doble acreditación en sexología y en sex coaching por el Colegio Americano de Sexología (ABS) y Sex Coach U respectivamente</b>. Mis mentoras dicen que hago coaching desde un lugar de integridad y corazón. <b>Mi estilo es una mezcla de guía empática y de comunicación transparente que apoya con verdades honestas.</b> Me especializo en crear un espacio orientado a la curación donde puedas sentir seguridad para hacer un trabajo valiente y crecer.
+      </p>
+       <p class="lead"><b>Cuando no estoy trabajando</b> , puedes encontrarme bailando ritmos afrolatinos, en una colchoneta de artes marciales, cuidando de mis numerosas plantas o en una ruta de senderismo.
+      </p>                      
+      <p class="lead"><b>Posicionalidad:</b> Se me percibe como persona blanca, no discapacitada, cis y hetero y tengo una apariencia alineada con los estándares de belleza predominantes, lo que me otorga un poder no ganado. Además, nací en un antiguo imperio global, tuve acceso a educación universitaria y puedo acceder a mi tierra ancestral. Tengo acceso a vivienda, comida, agua limpia, medicina y otras necesidades diarias y, en este momento, estoy estable mental y económicamente. Navego la opresión a través de algunas de mis identidades y experiencias: nací en una nación sin estado bajo la administración de un imperio interno moderno, me crié en una zona periurbana, siendo hablante de gallego. También soy SFAN (persona a la que se le asignó sexo femenino al nacer), persona no binaria, persona queer, inmigrante que tuvo que aprender inglés como tercera lengua, persona con discapacidad invisible y soy un ser humano que cuida de las personas y del planeta mientras navega el capitalismo.
+      </p>
+       <p class="lead">Camino con una verdad sagrada: ofrezco mi perspectiva única, sabiendo que <b>mi sabiduría no es original</b>, sino un tapiz tejido por las personas que vivieron antes que yo y por las tierras y comunidades que me nutrieron. Además, <b>esta consulta es un homenaje a la memoria de mis abuelos maternos</b>, Abuelo Paulino con quien compartí mi amor por la geografía y el humor, y Abuela Aurita que siempre supo y aceptó quién soy de verdad e hizo de Paulino una mejor persona. Por todo esto, mi agradecimiento es eterno.</p>
+      <p class="lead"><b>En resumen</b>, soy una guía profesional para tu viaje de vuelta a tu esencia y a la colectividad. He hecho y continúo haciendo mi propio trabajo para acompañarte bien en el camino. ¡Me encantaría colaborar contigo!
+  </p>
+ 
+  </section>
+  </span>
+
 
     <!-- Contact (single, flat, with form + socials) -->
     <section class="view" id="contact">
+      <span data-lang-only="en">
+
         <p class="lead"> Let’s Connect & Collaborate!  </p>
 
         <p class="lead"><b>For Seekers & Clients:</b></p>
@@ -780,25 +1256,198 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
         <a href="tel:+16196309440">+1 619.630.9440</a><br>
         <a href="https://www.instagram.com/mtlpractice/" target="_blank">IG @mtlpractice</a>
       </p>
+
+    </span>
+
+
+
+      <span data-lang-only="gl">
+
+      <p class="lead">Conectemos e colaboremos!  
+      </p>
+
+      <p class="lead"><b>Para persoas interesadas:  
+      </b></p>
+      <p class="lead">Este é un espazo confidencial para as túas preguntas sobre pracer, autenticidade e liberación. Ofrezo orientación compasiva para clarificar os meus servizos, explorar como poderiamos traballar en conxunto e abordar calquera preocupación ao comezar. Contactar é un acto de valentía… Espérote con brazos abertos. </p>
+      
+      <p class="lead"><b>Para colegas profesionais:  
+      </b></p>
+      <p class="lead">Para quen traballa coa intimidade, o benestar e a liberación: construamos pontes, non illas. Busco colaboracións, consultas entre iguais, apoio mutuo e aprendizaxe compartida con profesionais éticas dedicadas ao consentimento e a prácticas centradas na curación. Fortalezamos o noso traballo en comunidade.  
+      </p>
+      
+      <p class="lead">Envía unha nota, e responderei en breve.  
+      </p>
+          
+
+    <form 
+      action="https://formspree.io/f/meowgygb" 
+      method="POST"
+    >
+      <!-- honeypot -->
+      <input type="text" name="_gotcha" style="display:none;" aria-hidden="true" tabindex="-1" />
+
+      <input 
+        type="text" 
+        name="name" 
+        placeholder="O teu nome e pronomes" 
+        required
+      />
+
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="O teu correo electrónico" 
+        required
+      />
+
+      <textarea 
+        name="message" 
+        placeholder="A túa mensaxe" 
+        required
+      ></textarea>
+
+      <button class="btn" type="submit">Reserva Gratuita</button>
+    </form>
+
+    <br>
+
+    <p class="lead p-center">
+      <b>Pau PC | MTL Practice, LLC</b><br>
+      <a href="mailto:paupc@mtlpractice.com">paupc@mtlpractice.com</a><br> 
+      <a href="tel:+16196309440">+1 619.630.9440</a><br>
+      <a href="https://www.instagram.com/mtlpractice/" target="_blank">IG @mtlpractice</a>
+    </p>
+</span>
+
+
+
+
+<span data-lang-only="es">
+
+  <p class="lead">¡Conectemos y colaboremos!
+
+  </p>
+
+  <p class="lead"><b>Para personas interesadas: 
+  </b></p>
+  <p class="lead">
+    Este es un espacio confidencial para tus preguntas sobre placer, autenticidad y liberación. Ofrezco orientación compasiva para clarificar mis servicios, explorar cómo podríamos trabajar en conjunto y abordar cualquier preocupación al comenzar. Contactar es un acto de valentía… Te espero con los brazos abiertos.
+     </p>
+  
+  <p class="lead"><b>Para colegas profesionales:
+
+  </b></p>
+  <p class="lead">Para quienes trabajan con la intimidad, el bienestar y la liberación: construyamos puentes, no islas. Busco colaboraciones, consultas entre pares, apoyo mutuo y aprendizaje compartido con profesionales éticas dedicadas al consentimiento y a prácticas centradas en la curación. Fortalezcamos nuestro trabajo en comunidad.
+  </p>
+  
+  <p class="lead">Envía una nota, y responderé en breve.
+
+  </p>
+      
+
+<form 
+  action="https://formspree.io/f/meowgygb" 
+  method="POST"
+>
+  <!-- honeypot -->
+  <input type="text" name="_gotcha" style="display:none;" aria-hidden="true" tabindex="-1" />
+
+  <input 
+    type="text" 
+    name="name" 
+    placeholder="Tu nombre y pronombres" 
+    required
+  />
+
+  <input 
+    type="email" 
+    name="email" 
+    placeholder="Tu correo electrónico" 
+    required
+  />
+
+  <textarea 
+    name="message" 
+    placeholder="Tu mensaje" 
+    required
+  ></textarea>
+
+  <button class="btn" type="submit">Reserva Gratuita</button>
+</form>
+
+<br>
+
+<p class="lead p-center">
+  <b>Pau PC | MTL Practice, LLC</b><br>
+  <a href="mailto:paupc@mtlpractice.com">paupc@mtlpractice.com</a><br> 
+  <a href="tel:+16196309440">+1 619.630.9440</a><br>
+  <a href="https://www.instagram.com/mtlpractice/" target="_blank">IG @mtlpractice</a>
+</p>
+</span>
+
+
     </section>
 
     <!-- Book -->
-    <section class="view" id="book">
+    <section class="view" id="book">      <span data-lang-only="en">
+
       <p class="lead">
         This <b>20-minute free connecting call</b> is for new and curious clients. I look forward to connecting and discussing how I can support your journey.</p>
         <p class="lead"><b>Committed to making healing accessible,</b> I offer flexible rates, including a sliding scale and payment options, for our exchange. Let's find a plan that feels sustainable for both of us!</p>
       <a class="btn" href="https://cal.com/mtlpractice/20min" target="_blank">
         Book Free Call
-      </a>
+      </a></span>
+      <span data-lang-only="gl">
+      <p class="lead">
+        Esta <b>chamada gratuíta de conexión inicial dura 20 minutos</b> e é para persoas con curiosidade. Gustaríame moito conectar e falar de como podo apoiarte no camiño.</p>
+        <p class="lead"><b>Teño compromiso con facer o desenvolvemento persoal accesible</b>, polo que ofrezo tarifas flexibles dependendo dos teu poder adquisitivo e varias opcións de pagamento. Atopemos un plan que resulte sostible para as dúas partes!</p>
+      <a class="btn" href="https://cal.com/mtlpractice/20min" target="_blank">
+        Reserva Gratuita
+      </a></span>
+
+      <span data-lang-only="es">
+        <p class="lead">
+          Esta <b>llamada gratuita de conexión inicial dura 20 minutos</b> y es para personas con curiosidad. Me encantaría conectar y hablar de cómo puedo apoyarte en el camino.</p>
+          <p class="lead"><b>Tengo un compromiso con hacer que el desarrollo personal sea accesible, por lo que ofrezco tarifas flexibles dependiendo de tu poder adquisitivo y varias opciones de pago. ¡Encontremos un plan que resulte sostenible para ambas partes!
+          </p>
+        <a class="btn" href="https://cal.com/mtlpractice/20min" target="_blank">
+          Reserva Gratuita
+        </a></span>
+
     </section>
   </main>
 
+
   <!-- Bottom Nav (mobile only, below content) -->
+  <span data-lang-only="en">
+
   <nav class="actions actions-bottom" aria-label="Section navigation (bottom)">
     <a data-nav="me"    href="#me"     class="link-btn">Meet The Coach</a>
     <a data-nav="about" href="#about"  class="link-btn">About Coaching</a>
     <a data-nav="contact" href="#contact" class="link-btn">Contact Me</a>
+
+
+    
   </nav>
+</span>
+
+
+  <span data-lang-only="gl">
+    <nav class="actions actions-bottom" aria-label="Section navigation (bottom)">
+      <a data-nav="me"    href="#me"     class="link-btn">Sobre min</a>
+      <a data-nav="about" href="#about"  class="link-btn">O Coaching</a>
+      <a data-nav="contact" href="#contact" class="link-btn">Contacto</a>
+    </nav>  
+  </span>
+  <span data-lang-only="es">
+    <nav class="actions actions-bottom" aria-label="Section navigation (bottom)">
+  
+      <a data-nav="me"    href="#me"     class="link-btn">Sobre min</a>
+      <a data-nav="about" href="#about"  class="link-btn">El Coaching</a>
+      <a data-nav="contact" href="#contact" class="link-btn">Contacto</a>
+    </nav>  
+  </span>
+  
 </div>
 
 <footer class="page-footer">
@@ -817,13 +1466,42 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
 
 
       <p class="footer-disclaimer">
+        <span data-lang-only="en">
+         
           <b>Disclaimer:</b> Coaching is for education and personal development only and is not medical, psychological, or legal advice. Results are not guaranteed. No explicit content, nudity, or sexual activity occurs in any session.
           <br><b>Terms & Conditions:</b> By using this site or booking services, you confirm you are 18+ and responsible for your own decisions. Services are provided “as is,” and the coach is not liable for how information is used.
           <br><b>Privacy:</b> Basic personal information may be collected for scheduling and communication only and is not sold or shared except as required by law. Reasonable measures are used to protect your data.
-      <br><br><b>Photo credit to <a href="https://www.michaeldphoto.com" target="_blank">Michael Dunn</a></b> </p>
+      <br><br><b>Photo credit to <a href="https://www.michaeldphoto.com" target="_blank">Michael Dunn</a></b> 
+    
+    </span>
+    <span data-lang-only="gl">
+         
+      Aviso legal: O Coaching é só para educación e desenvolvemento persoal e non constitúe consello médico, psicolóxico ou legal. Non se garanten resultados. Non hai contido explícito, nudez nin actividade sexual en ningunha sesión.  
+      Termos e condicións: Ao usar este sitio ou reservar servizos, confirmas que tes máis de 18 anos e es responsable das túas propias decisións. Os servizos ofrécense "tal cal", e coach Pau non é responsable de como se use a información.      
+      <br>Privacidade: Pódense recoller datos persoais básicos só para programación e comunicación e non se venden nin comparten excepto que o requira a lei. Úsanse medidas estándares para protexer estes datos. 
+      
+  <br><br><b>Crédito fotográfico a Michael Dunn
+    <a href="https://www.michaeldphoto.com" target="_blank">Michael Dunn</a></b> 
+
+</span>
+
+<span data-lang-only="es">
+         
+  Aviso legal: El coaching es solo para educación y desarrollo personal y no constituye consejo médico, psicológico o legal. No se garantizan resultados. No hay contenido explícito, desnudez ni actividad sexual en ninguna sesión.
+  Términos y condiciones: Al usar esta página o reservar servicios, confirmas que tienes más de 18 años y eres responsable de tus propias decisiones. Los servicios se ofrecen "tal cual", y Coach Pau no es responsable de cómo se use la información.
+     
+  <br>Privacidad: Se pueden recoger datos personales básicos solo para programación y comunicación y no se venden ni comparten excepto que lo requiera la ley. Se usan medidas estándar para proteger estos datos.
+  
+<br><br><b>Crédito fotográfico a Michael Dunn
+<a href="https://www.michaeldphoto.com" target="_blank">Michael Dunn</a></b> 
+
+</span>
+
+    
+    </p>
 
       <div class="footer-right">
-        <a href="https://directory.sexcoachu.com/listing/pau-pc-csc/"   target="_blank"
+        <a href="https://findyoursexcoach.com/listing/pau-pc-acs-csc/"   target="_blank"
         rel="noopener noreferrer"
         class="badge-link">
           <img src="sexcoachu.png"
@@ -838,7 +1516,8 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
            class="badge-link">
           <img src="boardofsexology.png"
                alt="Certification — American Board of Sexology"
-               class="footer-badge" />
+               class="footer-badge cert-img"
+               data-full="boardofsexology.png" />
         </a>
       </div>
     </div>
@@ -881,7 +1560,10 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     function show(view){
       bubble.setAttribute('data-view', view);
       for (const id of Object.keys(views)){
-        document.querySelector(views[id]).classList.toggle('active', id === view);
+        const nodes = document.querySelectorAll(views[id]);
+        nodes.forEach((node) => {
+          node.classList.toggle('active', id === view);
+        });
       }
     }
   
@@ -946,6 +1628,90 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     closeModal.addEventListener('click', hideModal);
     modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') hideModal(); });
+
+    /* ====== Language selector (Galego / Español / English) ====== */
+    const LANG_STORAGE = 'mtl-lang';
+    const LANG_LABELS = { gl: 'Galego', es: 'Español', en: 'English' };
+    const langSwitch = document.getElementById('langSwitch');
+    const langToggle = document.getElementById('langToggle');
+    const langMenu = document.getElementById('langMenu');
+    const langCurrentLabel = document.getElementById('langCurrentLabel');
+    const langOptions = langMenu.querySelectorAll('button[data-lang]');
+
+    function setLangMenuOpen(open) {
+      langToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      langMenu.hidden = !open;
+      langSwitch.classList.toggle('is-open', open);
+    }
+
+    function updateLangVisibility(code) {
+      document.querySelectorAll('[data-lang-only]').forEach((el) => {
+        const raw = el.getAttribute('data-lang-only');
+        if (!raw || !String(raw).trim()) return;
+        const langs = String(raw).trim().split(/\s+/).filter(Boolean);
+        const show = langs.includes(code);
+        if (show) {
+          el.removeAttribute('hidden');
+        } else {
+          el.setAttribute('hidden', '');
+          if (el.matches && el.matches('audio, video')) {
+            try {
+              el.pause();
+              el.currentTime = 0;
+            } catch (_) {}
+          }
+        }
+      });
+    }
+
+    function applyLanguage(code) {
+      if (!LANG_LABELS[code]) code = 'en';
+      // Avoid updating <html lang="..."> dynamically.
+      // Some browsers react to lang changes by prompting/triggering translation UX,
+      // which can interfere with the language selector feeling "jumpy".
+      // document.documentElement.lang = code;
+      try { localStorage.setItem(LANG_STORAGE, code); } catch (_) {}
+      langCurrentLabel.textContent = LANG_LABELS[code];
+      langOptions.forEach((btn) => {
+        btn.setAttribute('aria-selected', btn.getAttribute('data-lang') === code ? 'true' : 'false');
+      });
+      updateLangVisibility(code);
+    }
+
+    function initLanguage() {
+      let code = 'en';
+      try {
+        const stored = localStorage.getItem(LANG_STORAGE);
+        if (stored && LANG_LABELS[stored]) code = stored;
+      } catch (_) {}
+      applyLanguage(code);
+    }
+
+    langToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = langToggle.getAttribute('aria-expanded') === 'true';
+      setLangMenuOpen(!open);
+    });
+
+    langOptions.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyLanguage(btn.getAttribute('data-lang'));
+        setLangMenuOpen(false);
+        langToggle.focus();
+      });
+    });
+
+    document.addEventListener('click', () => setLangMenuOpen(false));
+    langSwitch.addEventListener('click', (e) => e.stopPropagation());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && langSwitch.classList.contains('is-open')) {
+        setLangMenuOpen(false);
+        langToggle.focus();
+      }
+    });
+
+    initLanguage();
   </script>
   
 
