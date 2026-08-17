@@ -336,7 +336,7 @@ p.p-center {
     transition:opacity .22s ease,transform .22s ease;
   }
   .view.active{
-    opacity:1; transform:none; pointer-events:auto; height:auto;
+    opacity:1; transform:none; pointer-events:auto; height:auto; overflow:visible;
   }
 
   .lead{
@@ -743,6 +743,70 @@ audio::-webkit-media-controls-enclosure {
   }
 }
 
+.photo-block{
+  margin: 4px auto 28px;
+  max-width: 520px;
+  padding: 0;
+}
+.page-photo{
+  display: block;
+  width: min(280px, 72%);
+  height: auto;
+  margin: 0 auto;
+}
+.page-photo--circle{
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(0,0,0,.16);
+}
+.page-photo--frame{
+  width: min(420px, 86%);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+}
+.photo-caption{
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.4;
+  color: var(--ink-2);
+  font-style: italic;
+  text-align: center;
+  margin: 12px auto 0;
+  max-width: 36em;
+}
+.learn-more{
+  margin: 8px auto 0;
+  text-align: center;
+}
+.learn-more > summary.btn{
+  list-style: none;
+  text-align: center;
+  max-width: 260px;
+}
+.learn-more > summary.btn::-webkit-details-marker,
+.learn-more > summary.btn::marker{
+  display: none;
+  content: "";
+}
+.learn-more-open{ display: none; }
+.learn-more[open] .learn-more-closed{ display: none; }
+.learn-more[open] .learn-more-open{ display: inline; }
+.learn-more__body{
+  margin-top: 28px;
+  text-align: initial;
+}
+.learn-more-hint{
+  font-size: 14px;
+  line-height: 1.4;
+  color: #3b4a3e;
+  font-style: italic;
+  text-align: center;
+  margin: 10px auto 24px;
+  max-width: 36em;
+  opacity: .9;
+}
+.learn-more-wrap:has(.learn-more[open]) .learn-more-hint{
+  display: none;
+}
+
 a {
   color: #3f5b69;
 }
@@ -891,9 +955,12 @@ a {
       <p class="lead">
         <b>Douche a benvida á Terra das Múltiples Verdades!  </b></p> 
       <p class="lead">
-        Grazas por dedicar tempo, enerxía e recursos a este traballo. O meu papel como coach é <b>apoiar a cultivar o teu autocoñecemento, o benestar íntimo e a túa liberación, honrando a túa autonomía e experiencias vividas.</b> Estou aquí para te axudar a honrar a túa plena humanidade e a humanidade das demais persoas.  
+        Grazas por dedicar tempo, enerxía e recursos a este traballo. O meu papel como coach é <b>apoiar a cultivar o teu autocoñecemento, o benestar íntimo e a túa liberación, honrando a túa autonomía e experiencias vividas.</b> Estou aquí para te axudar a honrar a túa plena humanidade e a humanidade das demais persoas.
 
       </p>
+      <figure class="photo-block">
+        <img class="page-photo page-photo--circle" src="hand.png" alt="Man esquerda chea de terra, erguida cara á cámara, con herba e flores silvestres ao fondo.">
+      </figure>
       <p class="lead"><b>
         A miña práctica está enraizada en:</b>
       </p>
@@ -929,6 +996,9 @@ a {
           Thank you for taking the time, energy, and resources to engage in this work. My role as your coach is to <b>support your growth, your self-knowledge, intimacy wellbeing, and liberation, honoring your autonomy and lived experiences.</b> I am here to help you honor your full humanity and the humanity of others.
 
       </p>
+      <figure class="photo-block">
+        <img class="page-photo page-photo--circle" src="hand.png" alt="A muddy left hand held up toward the camera, with grass and wildflowers in the background.">
+      </figure>
       <p class="lead"><b>
         My practice is rooted in:</b>
       </p>
@@ -966,6 +1036,9 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
         Gracias por dedicar tiempo, energía y recursos a este trabajo. Mi rol como coach es <b>apoyar el cultivo de tu autoconocimiento, tu bienestar íntimo y tu liberación, honrando tu autonomía y tus experiencias vividas</b>. Estoy aquí para ayudarte a honrar tu plena humanidad y la humanidad de las demás personas.
 
       </p>
+      <figure class="photo-block">
+        <img class="page-photo page-photo--circle" src="hand.png" alt="Mano izquierda llena de tierra, alzada hacia la cámara, con hierba y flores silvestres al fondo.">
+      </figure>
       <p class="lead"><b>
         Mi práctica está enraizada en:
       </b>
@@ -1006,91 +1079,177 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     <!-- About / Sex Coaching ENGLISH -->
     <section class="view" id="about">
       <span data-lang-only="en">
+        <p class="lead"><b>What do you do, in plain language?</b></p>
+        <p class="lead">I help people who feel stuck -in relationships, with themselves, or during big life changes like divorce, menopause, moving, trauma, birth, or questioning their gender identity. Think of me as a guide who helps you untangle the mess, figure out what's really going on, and find practical steps forward.</p>
 
-     
-        <p class="lead"><b>What is Sexistential Coaching?</b></p>
-        <p class="lead">It’s <b>intimacy, relationship, identity, and sex coaching that supports your full human experience through the lens of sexuality.</b> Sexuality is deeper than sex: it's about our innate need for connection, pleasure, belonging, and embodiment.
-        We live in a society obsessed with sex yet terrified of talking about it honestly. This creates shame and inauthenticity. My coaching brings these "forbidden" topics into the light to liberate you, and therefore, us -humanity.</p>
-        <p class="lead"><b>In our sessions, we will work towards removing the obstacles you identify as your current “problems” by:</b></p>
+        <p class="lead"><b>How does it work?</b></p>
+        <p class="lead">We meet online, face-to-face, and talk. But we also do more than talk -I help you feel your feelings in your body using simple tools like breathing exercises, gentle movement, or even drawing. Why? Because feelings aren't just in your head -they live in your body too. Once we name them and move them through you, we can see the problem clearly, sort through the confusion, and map out actions that actually work for you.</p>
+
+       <figure class="photo-block">
+          <img class="page-photo page-photo--frame" src="pauhello.png" alt="Coach Pau smiling and waving on a video call, with short curly hair, thick black-rimmed glasses, and a black rubber-duck patterned shirt.">
+          <figcaption class="photo-caption">A video-call screenshot of Coach Pau smiling and waving with a white background, with short curly hair and wearing thick black-rimmed glasses and a black rubber-duck patterned shirt.</figcaption>
+        </figure>
+
+        <p class="lead"><b>Can you give me some examples of what people come to you for?</b></p>
+        <p class="lead">Sure! Things like:</p>
         <div class="centered-list">
-            <ul>
-              <li>Exploring your desires, boundaries, and beliefs in a healing-oriented, non-judgmental space.</li>
-        <li>Practicing communication and tune into your mind, body, and essence/soul/spirit.</li>
-       <li>Learning techniques for (more) pleasure and connection with yourself and others.</li>
-    <li>Setting intentions and building skills without diagnosis or "fixing."
-    </li></ul></div>
-    <p class="lead"><b>Attention! This is not therapy.</b> And you ask, “Wait! What’s the difference then?” In short: Coaching is present- and future-focused on education and action (e.g., “What happened with my libido?”, "How can I feel relaxed in a sexual encounter?”, “How can I build the sex life I want with my partner/s?"). Therapy addresses deeper mental health and past trauma (e.g., "Why don’t I feel sexual at all now?”, “Why am I struggling in sexual encounters and what deeper healing is needed?", “Why don’t I have a fulfilling sexual life with my partner/s?”). <b>Coaching and Therapy are 100% compatible and complement each other extremely well.</b></b> </p>
+          <ul>
+            <li>"I just went through a breakup and don't know who I am anymore."</li>
+            <li>"I'm going through menopause and my body feels like a stranger."</li>
+            <li>"I'm questioning my gender and don't know where to start."</li>
+            <li>"I love my partner but we can't seem to connect lately."</li>
+          </ul>
+        </div>
 
-        <p class="lead"><b>What can Sexistential Coaching do for you?</b></p>
-         <p class="lead">Improve communication, reclaim pleasure, explore your gender identity and expression, understand your desires, build confidence, navigate life changes, learn practical skills, etc. In short: <b>remove obstacles related to your sexual self.</b> And what does “sexual self” encapsulate? Who you are sexually and in relation to others, what you feel (desire, pleasure, fear, shame, joy), what you believe (ethics, values, stories), what you do (communication, practices, behaviors), and how you connect to your own body, to your culture, and to partner/s.  
-        </p>
+        <p class="lead"><b>Do we actually do anything sexual in sessions?</b></p>
+        <p class="lead">Nope. No nudity, no sexual activity. We talk, we breathe, we move -but nothing sexual happens in our sessions.</p>
+
+        <p class="lead"><b>Is this therapy?</b></p>
+        <p class="lead">No -and I want to be clear about that. Therapy looks at the past and deep wounds. I look at now and next: What do you want? What's in the way? What's one small step you can take today? That said, I'm happy to collaborate with your therapist if you have one and want me to, or help you find one if you'd like.</p>
+
+        <p class="lead"><b>Do you promise a "safe space"?</b></p>
+        <p class="lead">I don't promise "perfect safety" -because that's not part of our human condition, unfortunately! But I do promise a space where we aim for honesty, care, authenticity, and repair if something goes wrong. That's a space I can actually hold -because I strive to be more human and humane (not perfect) with you. That I DO promise.</p>
+
+       
+        <details class="learn-more">
+          <summary class="btn"><span class="learn-more-closed">Learn More</span><span class="learn-more-open">Show less</span></summary>
+          <div class="learn-more__body">
+            <p class="lead"><b>What is Sexistential Coaching?</b></p>
+            <p class="lead">It’s <b>intimacy, relationship, identity, and sex coaching that supports your full human experience through the lens of sexuality.</b> Sexuality is deeper than sex: it's about our innate need for connection, pleasure, belonging, and embodiment.
+            We live in a society obsessed with sex yet terrified of talking about it honestly. This creates shame and inauthenticity. My coaching brings these "forbidden" topics into the light to liberate you, and therefore, us -humanity.</p>
+            <p class="lead"><b>In our sessions, we will work towards removing the obstacles you identify as your current “problems” by:</b></p>
+            <div class="centered-list">
+              <ul>
+                <li>Exploring your desires, boundaries, and beliefs in a healing-oriented, non-judgmental space.</li>
+                <li>Practicing communication and tune into your mind, body, and essence/soul/spirit.</li>
+                <li>Learning techniques for (more) pleasure and connection with yourself and others.</li>
+                <li>Setting intentions and building skills without diagnosis or "fixing."</li>
+              </ul>
+            </div>
+            <p class="lead"><b>Attention! This is not therapy.</b> And you ask, “Wait! What’s the difference then?” In short: Coaching is present- and future-focused on education and action (e.g., “What happened with my libido?”, "How can I feel relaxed in a sexual encounter?”, “How can I build the sex life I want with my partner/s?"). Therapy addresses deeper mental health and past trauma (e.g., "Why don’t I feel sexual at all now?”, “Why am I struggling in sexual encounters and what deeper healing is needed?", “Why don’t I have a fulfilling sexual life with my partner/s?”). <b>Coaching and Therapy are 100% compatible and complement each other extremely well.</b></p>
+            <p class="lead"><b>What can Sexistential Coaching do for you?</b></p>
+            <p class="lead">Improve communication, reclaim pleasure, explore your gender identity and expression, understand your desires, build confidence, navigate life changes, learn practical skills, etc. In short: <b>remove obstacles related to your sexual self.</b> And what does “sexual self” encapsulate? Who you are sexually and in relation to others, what you feel (desire, pleasure, fear, shame, joy), what you believe (ethics, values, stories), what you do (communication, practices, behaviors), and how you connect to your own body, to your culture, and to partner/s.</p>
             <p class="lead">Please note: <b>No nudity or sexual activity take place in sessions.</b></p>
-        <p class="lead"><b>A note on safety:</b> I prefer to use the term “healing-oriented space” instead of “safe space” because I can commit to a healing-oriented space shaped by intention, accountability, and repair, but I cannot commit to an ideal of perfect safety… that’s humanly impossible! </p>
-        </span>
-
+            <p class="lead"><b>A note on safety:</b> I prefer to use the term “healing-oriented space” instead of “safe space” because I can commit to a healing-oriented space shaped by intention, accountability, and repair, but I cannot commit to an ideal of perfect safety… that’s humanly impossible!</p>
+          </div>
+        </details>
+      </span>
 
         <!-- ABOUT SPANISH -->
-
         <span data-lang-only="es">
+          <p class="lead"><b>¿Qué haces, en pocas palabras?</b></p>
+          <p class="lead">Ayudo a personas que se sienten atascadas en sus relaciones, consigo mismas, o durante grandes cambios en la vida como el divorcio, la menopausia, una mudanza, un trauma, un parto, o la exploración de su identidad de género. Piensa en mí como un guía que te ayuda a desenredar el lío, descubrir qué está pasando realmente y encontrar pasos prácticos para avanzar.</p>
 
-     
-          <p class="lead"><b>¿Qué es el “Sexistencial Coaching”?</b></p>
-          <p class="lead">Es un coaching en intimidad, relaciones, identidad y sexualidad que apoya tu experiencia humana global a través de la lente de la sexualidad. La sexualidad es más profunda que el sexo: trata de nuestras necesidades innatas de conexión, placer, pertenencia e integración corporal. Vivimos en una sociedad obsesionada con el sexo pero aterrorizada de hablar de él con honestidad. Esto crea vergüenza e inautenticidad. Mi coaching trae estos temas tabú a la luz para liberarte a ti, y así, a la humanidad.
-          </p>
-          <p class="lead"><b>En nuestras sesiones, trabajaremos para eliminar los obstáculos que identifiques como tus "problemas" actuales mediante:</b></p>
+          <p class="lead"><b>¿Cómo funciona?</b></p>
+          <p class="lead">Nos reunimos en línea, cara a cara, y hablamos. Pero también hacemos más que hablar: te ayudo a sentir tus emociones en tu cuerpo usando herramientas sencillas como ejercicios de respiración, movimiento suave o incluso dibujar. ¿Por qué? Porque las emociones no están solo en tu cabeza, también viven en tu cuerpo. Una vez que las nombramos y las dejamos fluir a través de ti, podemos ver el problema con claridad, ordenar la confusión y trazar acciones que realmente funcionen para ti.</p>
+
+  <figure class="photo-block">
+            <img class="page-photo page-photo--frame" src="pauhello.png" alt="Coach Pau sonriendo y saludando en una videollamada, con el pelo corto y rizado, gafas gruesas de pasta negra y una camisa negra con estampado de patitos de goma.">
+            <figcaption class="photo-caption">Una captura de pantalla de una videollamada de Coach Pau sonriendo y saludando en un fondo blanco, con el pelo corto y rizado, y usando gafas gruesas de pasta negra y una camisa negra con estampado de patitos de goma.</figcaption>
+          </figure>
+
+          <p class="lead"><b>¿Puedes darme algunos ejemplos de por qué la gente acude a ti?</b></p>
+          <p class="lead">¡Claro! Cosas como:</p>
           <div class="centered-list">
-              <ul>
-                <li>Exploración de tus deseos, límites y creencias en un espacio orientado a la curación y sin juicios.</li>
-          <li>Práctica de la comunicación y sintonización con tu mente, cuerpo y esencia/alma/espíritu.</li>
-         <li>Aprendizaje de técnicas para (más) placer y conexión contigo y con las demás personas.</li>
-      <li>Definición de intenciones y desarrollo de habilidades sin diagnóstico ni "arreglo".
-      </li></ul></div>
-      <p class="lead"><b>¡Atención! Esto no es terapia</b>. Y te preguntarás: “¡Espera! ¿Cuál es la diferencia entonces?” En resumen: el coaching se centra en el presente y en el futuro, en la educación y la acción (p. ej., “¿Qué pasó con mi libido?”, "¿Cómo puedo relajarme en un encuentro sexual?”, “¿Cómo puedo construir la vida sexual que quiero con mi/s pareja/s?”). La terapia aborda problemas de salud mental más profundos y traumas del pasado (p. ej., "¿Por qué no me siento sexual en absoluto ahora?”, “¿Por qué tengo dificultades en los encuentros sexuales y qué curación más profunda se necesita?”, “¿Por qué no tengo una vida sexual satisfactoria con mi/s pareja/s?”). <b>El coaching y la terapia son 100% compatibles y se complementan extraordinariamente bien entre ellas. </b></p>
-  
-          <p class="lead"><b>¿Qué puede hacer por ti el “Sexistencial Coaching”?</b></p>
-           <p class="lead">Mejorar la comunicación, reclamar el placer, explorar tu identidad y expresión de género, entender tus deseos, construir confianza, navegar cambios vitales, aprender habilidades prácticas, etc. En resumen: eliminar obstáculos relacionados con tu yo sexual. ¿Y qué abarca el "yo sexual"? Quién eres sexualmente y en relación a las demás personas, qué sientes (deseo, placer, miedo, vergüenza, alegría), en qué crees (ética, valores, historias), lo que haces (comunicación, prácticas, comportamientos), y cómo te conectas con tu propio cuerpo, con tu cultura y con tu/s pareja/s.
-
-          </p>
-              <p class="lead">Nota: no hay desnudez ni actividad sexual en las sesiones.
-              </p>
-          <p class="lead"><b>Una nota sobre seguridad:</b> prefiero usar el término “espacio orientado a la curación” en lugar de “espacio seguro” porque puedo comprometerme con un espacio de curación conformado por la intención, la responsabilidad y la reparación, pero no puedo comprometerme con un ideal de seguridad perfecta… ¡eso es humanamente imposible!</p>
-          </span>
-   <span data-lang-only="gl">
-       
-<!-- ABOUT GALICIAN -->
-          <p class="lead"><b>¿Que é o “Sexistencial Coaching”? </b></p>
-
-          <p class="lead">É un coaching de intimidade, relacións, identidade e sexualidade que apoia a túa experiencia humana global a través da lente da sexualidade. A sexualidade é máis profunda que o sexo: trata das nosas necesidades innatas de conexión, pracer, pertenza e integración corporal. Vivimos nunha sociedade obsesionada co sexo pero aterrorizada de falar del con honestidade. Isto crea vergoña e inautenticidade. O meu coaching trae estes temas tabú á luz para liberarte a ti, e así, á humanidade.  </p>
-          
-          <p class="lead"><b>Nas nosas sesións, traballaremos para eliminar os obstáculos que identifiques como os teus "problemas" actuais mediante:  </b></p>
-          <div class="centered-list">
-              <ul>
-                <li>
-                  Exploración dos teus desexos, límites e crenzas nun espazo orientado á curación e sen xuízos.  
-                </li>
-                <li>
-                  Practica da comunicación e sintonización coa túa mente, corpo e esencia/alma/espírito.  
-                </li>
-                <li>
-                  Aprendizaxe de técnicas para (máis) pracer e conexión contigo e coas demais persoas.  
-                </li>
-                <li>
-          Practica da comunicación e sintonización coa túa mente, corpo e esencia/alma/espírito.  </li>
-          <li>Aprendizaxe de técnicas para (máis) pracer e conexión contigo e coas demais persoas.  </li>
-          <li>Definición de intencións e desenvolvemento de habilidades sen diagnóstico nin "arranxo".  </li>
-          </ul>
+            <ul>
+              <li>"Acabo de pasar por una ruptura y ya no sé quién soy."</li>
+              <li>"Estoy pasando por la menopausia y no reconozco mi cuerpo."</li>
+              <li>"Estoy cuestionando mi género y no sé por dónde empezar."</li>
+              <li>"Amo a mi pareja, pero últimamente parece que no logramos conectar."</li>
+            </ul>
           </div>
-          
-          <p class="lead"><b>Atención! Isto non é terapia.</b> E ti preguntaraste: “Agarda! Cal é a diferenza entón?” En resumo: o coaching céntrase no presente e no futuro, na educación e a acción (p.ex., “Que pasou coa miña libido?”, "Como podo relaxarme nun encontro sexual?”, “Como podo construír a vida sexual que quero coa/s miña/s parella/s?”). A terapia aborda problemas de saúde mental máis profundos e traumas do pasado (p.ex., "Por que non me sinto sexual en absoluto agora?”, “Por que teño dificultades nos encontros sexuais e que curación máis profunda se precisa?”, “Por que non teño unha vida sexual satisfactoria coa/s miña/s parella/s?”). O coaching e a terapia son 100% compatibles e compleméntanse extraordinariamente ben entre elas.  </p>
-          
-          <p class="lead"><b>Que pode facer por ti o “Sexistencial Coaching”? </b></p>
-          
-          <p class="lead">Mellorar a comunicación, reclamar o pracer, explorar a túa identidade e expresión de xénero, entender os teus desexos, construír confianza, navegar cambios vitais, aprender habilidades prácticas, etc. En resumo: eliminar obstáculos relacionados co teu eu sexual. E que abrangue o "eu sexual"? Quen es sexualmente e en relación ás demais, que sentes (desexo, pracer, medo, vergoña, alegría), no que cres (ética, valores, historias), o que fas (comunicación, prácticas, comportamentos), e como te conectas co teu propio corpo, coa túa cultura e coa/s túa/s parella/s.  </p>
-          
-          <p class="lead">Nota: non hai nudez nin actividade sexual nas sesións.  </p>
-          
-          <p class="lead"><b>Unha nota sobre seguridade:</b> prefiro usar o termo “espazo orientado á curación” no canto de “espazo seguro” porque podo comprometerme cun espazo de curación conformado pola intención, a responsabilidade e a reparación, pero non podo comprometerme cun ideal de seguridade perfecta… ¡iso é humanamente imposible!  </p>
-          </span>
+
+          <p class="lead"><b>¿Hacemos algo sexual en las sesiones?</b></p>
+          <p class="lead">No. Nada de desnudez, ni actividad sexual. Hablamos, respiramos, nos movemos pero no ocurre nada sexual en nuestras sesiones.</p>
+
+          <p class="lead"><b>¿Esto es terapia?</b></p>
+          <p class="lead">No, y quiero dejar este punto muy claro. La terapia mira al pasado y a las heridas profundas. Yo miro al ahora y al siguiente paso: ¿Qué quieres? ¿Qué se interpone en el camino? ¿Qué pequeño paso puedes dar hoy? Dicho esto, con gusto colaboro con tu terapeuta si tienes y lo deseas, o te ayudo a encontrar un terapeuta por primera vez si lo prefieres.</p>
+
+          <p class="lead"><b>¿Prometes un "espacio seguro"?</b></p>
+          <p class="lead">No prometo una "seguridad perfecta", ¡porque eso no forma parte de nuestra condición humana, lamentablemente! Pero sí prometo un espacio donde centramos la honestidad, el cuidado, la autenticidad y la reparación si algo sale mal. Ese es un espacio que realmente puedo mantener porque me esfuerzo por ser más humane y asegurar un trato más humano (no perfecto) hacia los demás. Eso SÍ lo prometo.</p>
+
+        
+
+          <details class="learn-more">
+            <summary class="btn"><span class="learn-more-closed">Saber más</span><span class="learn-more-open">Ver menos</span></summary>
+            <div class="learn-more__body">
+              <p class="lead"><b>¿Qué es el “Sexistencial Coaching”?</b></p>
+              <p class="lead">Es un coaching en intimidad, relaciones, identidad y sexualidad que apoya tu experiencia humana global a través de la lente de la sexualidad. La sexualidad es más profunda que el sexo: trata de nuestras necesidades innatas de conexión, placer, pertenencia e integración corporal. Vivimos en una sociedad obsesionada con el sexo pero aterrorizada de hablar de él con honestidad. Esto crea vergüenza e inautenticidad. Mi coaching trae estos temas tabú a la luz para liberarte a ti, y así, a la humanidad.</p>
+              <p class="lead"><b>En nuestras sesiones, trabajaremos para eliminar los obstáculos que identifiques como tus "problemas" actuales mediante:</b></p>
+              <div class="centered-list">
+                <ul>
+                  <li>Exploración de tus deseos, límites y creencias en un espacio orientado a la curación y sin juicios.</li>
+                  <li>Práctica de la comunicación y sintonización con tu mente, cuerpo y esencia/alma/espíritu.</li>
+                  <li>Aprendizaje de técnicas para (más) placer y conexión contigo y con las demás personas.</li>
+                  <li>Definición de intenciones y desarrollo de habilidades sin diagnóstico ni "arreglo".</li>
+                </ul>
+              </div>
+              <p class="lead"><b>¡Atención! Esto no es terapia</b>. Y te preguntarás: “¡Espera! ¿Cuál es la diferencia entonces?” En resumen: el coaching se centra en el presente y en el futuro, en la educación y la acción (p. ej., “¿Qué pasó con mi libido?”, "¿Cómo puedo relajarme en un encuentro sexual?”, “¿Cómo puedo construir la vida sexual que quiero con mi/s pareja/s?”). La terapia aborda problemas de salud mental más profundos y traumas del pasado (p. ej., "¿Por qué no me siento sexual en absoluto ahora?”, “¿Por qué tengo dificultades en los encuentros sexuales y qué curación más profunda se necesita?”, “¿Por qué no tengo una vida sexual satisfactoria con mi/s pareja/s?”). <b>El coaching y la terapia son 100% compatibles y se complementan extraordinariamente bien entre ellas. </b></p>
+              <p class="lead"><b>¿Qué puede hacer por ti el “Sexistencial Coaching”?</b></p>
+              <p class="lead">Mejorar la comunicación, reclamar el placer, explorar tu identidad y expresión de género, entender tus deseos, construir confianza, navegar cambios vitales, aprender habilidades prácticas, etc. En resumen: eliminar obstáculos relacionados con tu yo sexual. ¿Y qué abarca el "yo sexual"? Quién eres sexualmente y en relación a las demás personas, qué sientes (deseo, placer, miedo, vergüenza, alegría), en qué crees (ética, valores, historias), lo que haces (comunicación, prácticas, comportamientos), y cómo te conectas con tu propio cuerpo, con tu cultura y con tu/s pareja/s.</p>
+              <p class="lead">Nota: no hay desnudez ni actividad sexual en las sesiones.</p>
+              <p class="lead"><b>Una nota sobre seguridad:</b> prefiero usar el término “espacio orientado a la curación” en lugar de “espacio seguro” porque puedo comprometerme con un espacio de curación conformado por la intención, la responsabilidad y la reparación, pero no puedo comprometerme con un ideal de seguridad perfecta… ¡eso es humanamente imposible!</p>
+            </div>
+          </details>
+        </span>
+
+        <span data-lang-only="gl">
+<!-- ABOUT GALICIAN -->
+          <p class="lead"><b>Que fas, en linguaxe sinxela?</b></p>
+          <p class="lead">Axudo a persoas que se senten atascadas nas súas relacións, con elas mesmas, ou durante grandes cambios na vida como o divorcio, a menopausia, unha mudanza, un trauma, un parto, ou a exploración da súa identidade de xénero. Pensa en min como un guía que che axuda a desenredar o lío, descubrir o que está a pasar realmente e atopar pasos prácticos para avanzar.</p>
+
+          <p class="lead"><b>Como funciona?</b></p>
+          <p class="lead">Reunímonos en liña, cara a cara, e falamos. Pero tamén facemos máis que falar: axúdote a sentir as túas emocións no teu corpo usando ferramentas sinxelas como exercicios de respiración, movemento suave ou mesmo debuxar. Por que? Porque as emocións non están só na túa cabeza, tamén viven no teu corpo. Unha vez que as nomeamos e as deixamos fluír a través de ti, podemos ver o problema con claridade, ordenar a confusión e trazar accións que realmente funcionen para ti.</p>
+
+          <figure class="photo-block">
+            <img class="page-photo page-photo--frame" src="pauhello.png" alt="Coach Pau sorrindo e saudando nunha videollamada, co pelo curto e rizado, lentes grosas de pasta negra e unha camisa negra con estampado de parruliños de goma.">
+            <figcaption class="photo-caption">Unha captura de pantalla dunha videollamada de Coach Pau sorrindo e saudando nun fondo branco, co pelo curto e rizado, e usando lentes grosas de pasta negra e unha camisa negra con estampado de parruliños de goma.</figcaption>
+          </figure>
+
+          <p class="lead"><b>Podes darme algúns exemplos do que a xente vén a ti?</b></p>
+          <p class="lead">Claro! Cousas como:</p>
+          <div class="centered-list">
+            <ul>
+              <li>"Acabo de pasar por unha ruptura e xa non sei quen son."</li>
+              <li>"Estou pasando pola menopausia e o meu corpo séntese como un estraño."</li>
+              <li>"Estou cuestionando o meu xénero e non sei por onde comezar."</li>
+              <li>"Amo a miña parella, pero ultimamente parece que non logramos conectar."</li>
+            </ul>
+          </div>
+
+          <p class="lead"><b>Facemos algo sexual nas sesións?</b></p>
+          <p class="lead">Non. Nada de espidos, nin actividade sexual. Falamos, respiramos, movémonos pero non ocorre nada sexual nas nosas sesións.</p>
+
+          <p class="lead"><b>Isto é terapia?</b></p>
+          <p class="lead">Non, e quero deixar claro este punto. A terapia mira ao pasado e ás feridas profundas. Eu miro ao agora e ao seguinte paso: Que queres? Que se interpón no camiño? Cal é un pequeno paso que podes dar hoxe? Dito isto, con gusto colaboro co teu terapeuta se tes un e o desexas, ou axúdote a atopar un se o prefires.</p>
+
+          <p class="lead"><b>Prometes un "espazo seguro"?</b></p>
+          <p class="lead">Non prometo "seguridade perfecta", porque iso non forma parte da nosa condición humana, por desgraza! Pero si prometo un espazo onde apuntamos á honestidade, o coidado, a autenticidade e a reparación se algo sae mal. Ese é un espazo que realmente podo manter, porque me esforzo por ser máis humane e asegurar un trato máis humano cos demáis, non perfecto. Iso SI o prometo.</p>
+
+        
+
+          <details class="learn-more">
+            <summary class="btn"><span class="learn-more-closed">Saber máis</span><span class="learn-more-open">Ver menos</span></summary>
+            <div class="learn-more__body">
+              <p class="lead"><b>¿Que é o “Sexistencial Coaching”?</b></p>
+              <p class="lead">É un coaching de intimidade, relacións, identidade e sexualidade que apoia a túa experiencia humana global a través da lente da sexualidade. A sexualidade é máis profunda que o sexo: trata das nosas necesidades innatas de conexión, pracer, pertenza e integración corporal. Vivimos nunha sociedade obsesionada co sexo pero aterrorizada de falar del con honestidade. Isto crea vergoña e inautenticidade. O meu coaching trae estes temas tabú á luz para liberarte a ti, e así, á humanidade.</p>
+              <p class="lead"><b>Nas nosas sesións, traballaremos para eliminar os obstáculos que identifiques como os teus "problemas" actuais mediante:</b></p>
+              <div class="centered-list">
+                <ul>
+                  <li>Exploración dos teus desexos, límites e crenzas nun espazo orientado á curación e sen xuízos.</li>
+                  <li>Practica da comunicación e sintonización coa túa mente, corpo e esencia/alma/espírito.</li>
+                  <li>Aprendizaxe de técnicas para (máis) pracer e conexión contigo e coas demais persoas.</li>
+                  <li>Definición de intencións e desenvolvemento de habilidades sen diagnóstico nin "arranxo".</li>
+                </ul>
+              </div>
+              <p class="lead"><b>Atención! Isto non é terapia.</b> E ti preguntaraste: “Agarda! Cal é a diferenza entón?” En resumo: o coaching céntrase no presente e no futuro, na educación e a acción (p.ex., “Que pasou coa miña libido?”, "Como podo relaxarme nun encontro sexual?”, “Como podo construír a vida sexual que quero coa/s miña/s parella/s?”). A terapia aborda problemas de saúde mental máis profundos e traumas do pasado (p.ex., "Por que non me sinto sexual en absoluto agora?”, “Por que teño dificultades nos encontros sexuais e que curación máis profunda se precisa?”, “Por que non teño unha vida sexual satisfactoria coa/s miña/s parella/s?”). O coaching e a terapia son 100% compatibles e compleméntanse extraordinariamente ben entre elas.</p>
+              <p class="lead"><b>Que pode facer por ti o “Sexistencial Coaching”?</b></p>
+              <p class="lead">Mellorar a comunicación, reclamar o pracer, explorar a túa identidade e expresión de xénero, entender os teus desexos, construír confianza, navegar cambios vitais, aprender habilidades prácticas, etc. En resumo: eliminar obstáculos relacionados co teu eu sexual. E que abrangue o "eu sexual"? Quen es sexualmente e en relación ás demais, que sentes (desexo, pracer, medo, vergoña, alegría), no que cres (ética, valores, historias), o que fas (comunicación, prácticas, comportamentos), e como te conectas co teu propio corpo, coa túa cultura e coa/s túa/s parella/s.</p>
+              <p class="lead">Nota: non hai nudez nin actividade sexual nas sesións.</p>
+              <p class="lead"><b>Unha nota sobre seguridade:</b> prefiro usar o termo “espazo orientado á curación” no canto de “espazo seguro” porque podo comprometerme cun espazo de curación conformado pola intención, a responsabilidade e a reparación, pero non podo comprometerme cun ideal de seguridade perfecta… ¡iso é humanamente imposible!</p>
+            </div>
+          </details>
+        </span>
 
 
     </section>
@@ -1110,67 +1269,98 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     <!-- Meet the Coach ENGLISH-->
     <span data-lang-only="en">
     <section class="view" id="me">
+        <p class="lead">I’m a fisherman’s grandkid, an immigrant, and a certified chaos-to-clarity specialist.</p>
+        <p class="lead">I speak five languages, dance Afro-Latin rhythms, and once had my life rearranged by an accident -which, ironically, taught me how to actually LIVE in my body. I coach from the "in-between": where strategy meets soul, humor meets reverence, and non-binary isn't just my gender… It's my operating system!</p>
+        <p class="lead">Credentials? Board-certified sexologist, certified sex coach, and proud plant parent. But, honestly? My real training came from the ocean, the border by where I was born and raised, and my maternal grandma who saw me before I saw myself.</p>
+        <p class="lead">I don't do textbook. I do real, with heart, authenticity, wit, and zero BS.</p>
+        <p class="lead">Ready to grow? Let’s dance. Metaphorically. (But also literally, if you're into that.)</p>
 
-        <p class="lead"><b>About Coach Pau</b></p>
-        <p class="lead">The <b>missing photo</b> is intentional -I’m a real person, pinky swear! Let’s challenge what “looks/is professionally expected”. Free of judgment, what truly matters when choosing a practitioner: appearances, titles, genuine alignment of skills with your needs, or any combination of these?</p>
-         <p class="lead">My journey has been shaped by emigration -collecting a mosaic of jobs, a fluency in five languages, and immersion in diverse sociocultural contexts-, a deep belief in reinvention and growth, and a life-altering accident that introduced me to invisible disability and chronic pain, making <b>embodiment and somatic practices</b> a crucial survival tool for me. Through it all, my core remains: I am a fronterize, and a fisherman’s grandkid; taught by the ocean, my provider, that a power greater than us all exists, and by the border that different cultures share one humanity.</p>
-     <p class="lead">All of this is why <b>I don’t coach from a textbook but from the "in-between"</b>: a space I inhabit through my non-binary identity that expands beyond gender, bridging heart-led wisdom and strategic action, collective thinking and sacred solitude, and joyful humor with reverent, compassionate silence.
-</p>
-        <p class="lead">My credentials: I hold dual certifications as a <b>Board-Certified Sexologist (ACS) and a Certified Sex Coach (CSC)</b>, credentialed respectively by the American Board of Sexology and Sex Coach U. My mentors say I coach from a place of integrity and heart. <b>My style is a blend of empathetic guide, transparent communicator, and supportive truth-teller.</b> I specialize in creating a healing-oriented space where you can feel secure enough to do your bravest work and grow.</p>
-         <p class="lead"><b>When I'm not working,</b> you'll find me dancing to Afro-Latin rhythms, on a martial arts mat, caring for my many plants, or on a hiking trail.</p>                      
+        <figure class="photo-block">
+          <img class="page-photo page-photo--circle" src="pau.png" alt="A close-up circular portrait of Coach Pau smiling outdoors, with short curly hair, a grey cardigan, and a colorful Galician scarf.">
+          <figcaption class="photo-caption">A close-up, circular portrait of Coach Pau smiling outdoors, with short-curly hair and wearing a grey cardigan and colorful Galician scarf.</figcaption>
+        </figure>
+
+        <div class="learn-more-wrap">
+          <details class="learn-more">
+            <summary class="btn"><span class="learn-more-closed">Learn More</span><span class="learn-more-open">Show less</span></summary>
+            <div class="learn-more__body">
+              <p class="lead"><b>About Coach Pau</b></p>
+              <p class="lead">My journey has been shaped by emigration -collecting a mosaic of jobs, a fluency in five languages, and immersion in diverse sociocultural contexts-, a deep belief in reinvention and growth, and a life-altering accident that introduced me to invisible disability and chronic pain, making <b>embodiment and somatic practices</b> a crucial survival tool for me. Through it all, my core remains: I am a fisherman’s grandkid and was born and raised by a border; taught by the ocean, my provider, that a power greater than us all exists, and by the border that different cultures share one humanity.</p>
+              <p class="lead">All of this is why <b>I don’t coach from a textbook but from the "in-between"</b>: a space I inhabit through my non-binary identity that expands beyond gender, bridging heart-led wisdom and strategic action, collective thinking and sacred solitude, and joyful humor with reverent, compassionate silence.</p>
+              <p class="lead">My credentials: I hold dual certifications as a <b>Board-Certified Sexologist (ACS) and a Certified Sex Coach (CSC)</b>, credentialed respectively by the American Board of Sexology and Sex Coach U. My mentors say I coach from a place of integrity and heart. <b>My style is a blend of empathetic guide, transparent communicator, and supportive truth-teller.</b> I specialize in creating a healing-oriented space where you can feel secure enough to do your bravest work and grow.</p>
+              <p class="lead"><b>When I'm not working,</b> you'll find me dancing to Afro-Latin rhythms, on a martial arts mat, caring for my many plants, or on a hiking trail.</p>
+              <p class="lead">I walk with a sacred truth: I offer my unique perspective, knowing <b>my wisdom is not original</b>, but a tapestry woven from my ancestors and the lands and communities that have nurtured me. Furthermore, <b>this practice is a tribute to the memory of my maternal grandparents</b>, Abuelo Paulino, with whom I shared my love for geography and humor, and Abuela Aurita, who always knew and accepted who I truly am and made Paulino a better person. For all of this, I am forever grateful.</p>
+              <p class="lead"><b>In short</b>, I'm a professional guide for your journey back to yourself and to the collective. I've done and continue to do my own homework to be a great companion on the path. Cannot wait to collaborate with you!</p>
+            </div>
+          </details>
+          <p class="learn-more-hint">Click for the full saga, including ancestors, martial arts, and my eternal gratitude.</p>
+        </div>
         <p class="lead"><b>Positionality:</b> I hold unearned power in many social settings as white-passing, visibly able-bodied, cisgender-passing, straight-passing, and looks aligned with mainstream beauty standards. Additionally, I was born in a former and structural global empire, I had access to a college education, and I can access my ancestral land. I have access to shelter, food, clean water, medicine, and other daily life necessities, and, at this moment, I am mentally and financially stable. I navigate oppression through some of my identities and experiences: born in a stateless nation under the administration of a modern internal empire, exurban upbringing, Galician-speaker, AFAB, gender non-binary, queer person, immigrant, English learner, person with an invisible disability, and human caring for people and the planet while navigating capitalism.</p>
-         <p class="lead">I walk with a sacred truth: I offer my unique perspective, knowing <b>my wisdom is not original</b>, but a tapestry woven from my ancestors and the lands and communities that have nurtured me. Furthermore, <b>this practice is a tribute to the memory of my maternal grandparents</b>, Abuelo Paulino, with whom I shared my love for geography and humor, and Abuela Aurita, who always knew and accepted who I truly am and made Paulino a better person. For all of this, I am forever grateful.</p>
-        <p class="lead"><b>In short</b>, I'm a professional guide for your journey back to yourself and to the collective. I've done and continue to do my own homework to be a great companion on the path. Cannot wait to collaborate with you!
-    </p>
-   
     </section>
 </span>
 <!-- MEET GALICIAN -->
 
   <section class="view" id="me">
     <span data-lang-only="gl">
-    <p class="lead"><b>Coñece a Coach Pau:
-    </b></p>
-    <p class="lead">A <b>foto ausente</b> é intencionada -son unha persoa real, <i>palabrita del Niño Jesús!</i> Cuestionemos o que é considerado “profesional" e non. Libre de xuízos, que é o realmente importante a hora de escoller un profesional: as aparencias, os títulos, o auténtico aliñamento das súas capacidades coas túas necesidades, ou calquera combinación destas? </p>
-    <p class="lead">A miña traxectoria foi marcada pola emigración -recompilando un mosaico de traballos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturais-, e unha profunda crenza na reinvención e no crecemento. Alén diso, un accidente cambiou a miña vida e presentoume á discapacidade invisible e á dor crónica, facendo das <b>prácticas somáticas e corporizadas</b> (reconexión co momento presente) unha ferramenta crucial de supervivencia para min. A través de todo isto, o meu núcleo permanece: son fronteirize e con avós pescadores; o océano, o meu provedor, ensinoume que existe un poder maior que todas nós, e a fronteira que as culturas diferentes comparten unha soa humanidade.  
+    <p class="lead">Son unha persoa con avós pescadores, inmigrante e especialista en converter o caos en claridade.</p>
+    <p class="lead">Falo cinco linguas, bailo ritmos Afrolatinos e unha vez un accidente cambiou o rumbo da miña vida e, irónicamente, ensinouno a VIVIR realmente no meu corpo. Fago coaching desde "o medio": onde a estratexia se atopa coa alma, o humor coa reverencia, e o non-binario non é só o meu xénero… é o meu sistema operativo!</p>
+    <p class="lead">Credenciais? Teño dobre acreditación en sexoloxía e en sex coaching polo Colexio Americano de Sexoloxía (ABS) e Sex Coach U respectivamente, e sinto moito orgullo cultivando DEMASIADAS plantas. Pero, sinceramente? A miña verdadeira formación veu do océano, a fronteira preto onde nacín e crecín, e a miña avoa materna, que me viu antes de que eu me vise a min mesme.</p>
+    <p class="lead">Como o fago? Non sigo literalmente os libros de texto. Fago o real, con corazón, autenticidade, enxeño e cero parvadas.</p>
+    <p class="lead">¿Queres medrar? Bailemos. Metaforicamente. (E tamén literalmente, se che apetece.)</p>
 
-</p>      <p class="lead">Por todo isto, <b>non fago coaching desde un libro de texto senón desde “o medio”</b>: un espazo que habito a través da miña identidade non binaria, que se expande máis aló do xénero, tendendo pontes entre a sabedoría guiada polo corazón e a acción estratéxica, o pensamento colectivo e a soidade honrada, e o humor alegre e o silencio reverente e compasivo.  
-</p>
-    <p class="lead">A miña formación: teño <b>dobre acreditación en sexoloxía e en sex coaching polo Colexio Americano de Sexoloxía (ABS) e Sex Coach U respectivamente</b>. As miñas mentoras din que fago coaching desde un lugar de integridade e corazón. <b>O meu estilo é unha mestura de guía empática, e de comunicación transparente que apoia con verdades honestas.</b> Especialízome en crear un espazo orientado á curación onde poidas sentir seguridade para facer un traballo valente e medrar.  
-    </p>
-     <p class="lead"><b>Cando non estou a traballar</b>, podes atoparme bailando ritmos afrolatinos, nunha colchoneta de artes marciais, coidando das miñas numerosas plantas ou nunha ruta de sendeirismo.  <p>                      
-    <p class="lead"><b>Posicionalidade:</b> Percíbeseme como persoa branca, non discapacitada, cis e hetero e teño unha aparencia aliñada cos estándares de beleza predominantes, o que me dá un poder non gañado. Ademais, nacín nun antigo imperio global, tiven acceso a educación universitaria e podo acceder á miña terra ancestral. Teño acceso a vivenda, comida, auga limpa, medicina e outras necesidades diarias e, neste momento, estou estable mental e economicamente. Navego a opresión a través dalgunhas das miñas identidades e experiencias: nacín nunha nación sen estado baixo a administración dun imperio interno moderno, crieime nunha zona periurbana, sendo falante de galego. Tamén son SFAN (persoa á que se lle asignou sexo feminino ao nacer), persoa non binaria, persoa queer, inmigrante que tivo que aprender inglés como terceira lingua, persoa con discapacidade invisible e son un ser humano que coida das persoas e do planeta mentres navega o capitalismo.  
+    <figure class="photo-block">
+      <img class="page-photo page-photo--circle" src="pau.png" alt="Un retrato circular en primeiro plano de Coach Pau sorrindo ao aire libre, co pelo curto e rizado, unha chaqueta gris e un colorido pano galego ao pescozo.">
+      <figcaption class="photo-caption">Un retrato circular en primeiro plano de Coach Pau sorrindo ao aire libre, co pelo curto e rizado, e vestindo unha chaqueta gris e un colorido pano galego ao pescozo.</figcaption>
+    </figure>
 
-    </p>
-     <p class="lead">Camiño cunha verdade sagrada: ofrezo a miña perspectiva única, sabendo que <b>a miña sabedoría non é orixinal</b> , senón un tapiz tecido polas persoas que viviron antes ca min e polas terras e comunidades que me nutriron. Ademais, <b>esta consulta é unha homenaxe á memoria dos meus avós maternos</b>, Abuelo Paulino con quen compartín o meu amor pola xeografía e o humor, e Abuela Aurita que sempre soubo e aceptou quen son de verdade e fixo de Paulino unha mellor persoa. Por todo isto, o meu agradecemento é eterno.
-    </p>
-    <p class="lead"><b>En resumo</b>, son unha guía profesional para a túa viaxe de volta á tua esencia e á colectividade. Fixen e continuo a facer o meu propio traballo para acompañarte ben no camiño. Gustaríame moito colaborar contigo! 
-</p>
+    <div class="learn-more-wrap">
+      <details class="learn-more">
+        <summary class="btn"><span class="learn-more-closed">Máis información</span><span class="learn-more-open">Ver menos</span></summary>
+        <div class="learn-more__body">
+          <p class="lead"><b>Coñece a Coach Pau:</b></p>
+          <p class="lead">A miña traxectoria foi marcada pola emigración -recompilando un mosaico de traballos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturais-, e unha profunda crenza na reinvención e no crecemento. Alén diso, un accidente cambiou a miña vida e presentoume á discapacidade invisible e á dor crónica, facendo das <b>prácticas somáticas e corporizadas</b> (reconexión co momento presente) unha ferramenta crucial de supervivencia para min. A través de todo isto, o meu núcleo permanece: son fronteirize -persoa que naceu e creceu preto dunha fronteira- e con avós pescadores; o océano, o meu provedor, ensinoume que existe un poder maior que todas nós, e a fronteira que as culturas diferentes comparten unha soa humanidade.</p>
+          <p class="lead">Por todo isto, <b>non fago coaching desde un libro de texto senón desde “o medio”</b>: un espazo que habito a través da miña identidade non binaria, que se expande máis aló do xénero, tendendo pontes entre a sabedoría guiada polo corazón e a acción estratéxica, o pensamento colectivo e a soidade honrada, e o humor alegre e o silencio reverente e compasivo.</p>
+          <p class="lead">A miña formación: teño <b>dobre acreditación en sexoloxía e en sex coaching polo Colexio Americano de Sexoloxía (ABS) e Sex Coach U respectivamente</b>. As miñas mentoras din que fago coaching desde un lugar de integridade e corazón. <b>O meu estilo é unha mestura de guía empática, e de comunicación transparente que apoia con verdades honestas.</b> Especialízome en crear un espazo orientado á curación onde poidas sentir seguridade para facer un traballo valente e medrar.</p>
+          <p class="lead"><b>Cando non estou a traballar</b>, podes atoparme bailando ritmos afrolatinos, nunha colchoneta de artes marciais, coidando das miñas numerosas plantas ou nunha ruta de sendeirismo.</p>
+          <p class="lead">Camiño cunha verdade sagrada: ofrezo a miña perspectiva única, sabendo que <b>a miña sabedoría non é orixinal</b>, senón un tapiz tecido polas persoas que viviron antes ca min e polas terras e comunidades que me nutriron. Ademais, <b>esta consulta é unha homenaxe á memoria dos meus avós maternos</b>, Abuelo Paulino con quen compartín o meu amor pola xeografía e o humor, e Abuela Aurita que sempre soubo e aceptou quen son de verdade e fixo de Paulino unha mellor persoa. Por todo isto, o meu agradecemento é eterno.</p>
+          <p class="lead"><b>En resumo</b>, son unha guía profesional para a túa viaxe de volta á tua esencia e á colectividade. Fixen e continuo a facer o meu propio traballo para acompañarte ben no camiño. Gustaríame moito colaborar contigo!</p>
+        </div>
+      </details>
+      <p class="learn-more-hint">Fai clic para a saga ao completo, incluíndo antepasados, artes marciais e a miña gratitude eterna.</p>
+    </div>
+    <p class="lead"><b>Posicionalidade:</b> Percíbeseme como persoa branca, non discapacitada, cis e hetero e teño unha aparencia aliñada cos estándares de beleza predominantes, o que me dá un poder non gañado. Ademais, nacín nun antigo imperio global, tiven acceso a educación universitaria e podo acceder á miña terra ancestral. Teño acceso a vivenda, comida, auga limpa, medicina e outras necesidades diarias e, neste momento, estou estable mental e economicamente. Navego a opresión a través dalgunhas das miñas identidades e experiencias: nacín nunha nación sen estado baixo a administración dun imperio interno moderno, crieime nunha zona periurbana, sendo falante de galego. Tamén son SFAN (persoa á que se lle asignou sexo feminino ao nacer), persoa non binaria, persoa queer, inmigrante que tivo que aprender inglés como terceira lingua, persoa con discapacidade invisible e son un ser humano que coida das persoas e do planeta mentres navega o capitalismo.</p>
 </span>
 </section>
  <!-- MEET SPANISH -->
   <span data-lang-only="es">
     <section class="view" id="me">
+      <p class="lead">Soy una persona con abuelos pescadores, inmigrante y especialista en convertir el caos en claridad.</p>
+      <p class="lead">Hablo cinco idiomas, bailo ritmos Afrolatinos y una vez un accidente cambió el rumbo de mi vida e, irónicamente, me enseñó a VIVIR realmente en mi cuerpo. Hago coaching desde "el medio": donde la estrategia se encuentra con el alma, el humor con la reverencia, y lo no-binario no es solo mi género… ¡Es mi sistema operativo!</p>
+      <p class="lead">¿Credenciales? Tengo doble acreditación en sexología y coaching por el Colegio Americano de Sexología (ABS) y Sex Coach U respectivamente, y siento mucho orgullo cultivando DEMASIADAS plantas. Pero, ¿sinceramente? Mi verdadera formación vino del océano, la frontera cerca de donde nací y crecí, y mi abuela materna, que me vio antes de que yo me viera a mí misme.</p>
+      <p class="lead">¿Cómo lo hago? No sigo literalmente los libros de texto. Hago lo real, con corazón, autenticidad, ingenio y cero tonterías.</p>
+      <p class="lead">¿Quieres crecer? Bailemos. Metafóricamente. (Y también literalmente, si te apetece.)</p>
 
-      <p class="lead"><b>Conoce a Coach Pau:
-      </b></p>
-      <p class="lead">
-        La <b>foto ausente</b> es intencionada -¡soy una persona real, palabrita del Niño Jesús! Cuestionemos lo que es considerado "profesional" y lo que no. Sin juicios, ¿qué es realmente importante al elegir a un profesional? ¿Las apariencias, los títulos, el auténtico alineamiento de sus capacidades con tus necesidades, o cualquier combinación de estas?</p>
-       <p class="lead">Mi trayectoria ha estado marcada por la emigración —reuniendo un mosaico de trabajos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturales— y una profunda creencia en la reinvención y el crecimiento. Además, un accidente cambió mi vida y me presentó a la discapacidad invisible y al dolor crónico, haciendo de las prácticas somáticas y corporizadas (reconexión con el momento presente) una herramienta crucial de supervivencia para mí. A través de todo esto, mi núcleo permanece: soy una persona no binaria y con abuelos pescadores; el océano, mi proveedor, me enseñó que existe un poder mayor que todas nosotras, y que la frontera que las culturas diferentes comparten una sola humanidad.
-      </p>
-   <p class="lead">Por todo ello, <b>no hago coaching desde un libro de texto sino desde "el medio"</b>: un espacio que habito a través de mi identidad no binaria, que se expande más allá del género, tendiendo puentes entre la sabiduría guiada por el corazón y la acción estratégica, el pensamiento colectivo y la soledad honrada, y el humor alegre y el silencio reverente y compasivo.
+      <figure class="photo-block">
+        <img class="page-photo page-photo--circle" src="pau.png" alt="Un retrato circular en primer plano de Coach Pau sonriendo al aire libre, con el pelo corto y rizado, una chaqueta gris y un colorido pañuelo gallego largo al cuello.">
+        <figcaption class="photo-caption">Un retrato circular en primer plano de Coach Pau sonriendo al aire libre, con el pelo corto y rizado, y vistiendo una chaqueta gris y un colorido pañuelo gallego largo al cuello.</figcaption>
+      </figure>
 
-</p>
-      <p class="lead">Mi formación: tengo <b>doble acreditación en sexología y en sex coaching por el Colegio Americano de Sexología (ABS) y Sex Coach U respectivamente</b>. Mis mentoras dicen que hago coaching desde un lugar de integridad y corazón. <b>Mi estilo es una mezcla de guía empática y de comunicación transparente que apoya con verdades honestas.</b> Me especializo en crear un espacio orientado a la curación donde puedas sentir seguridad para hacer un trabajo valiente y crecer.
-      </p>
-       <p class="lead"><b>Cuando no estoy trabajando</b> , puedes encontrarme bailando ritmos afrolatinos, en una colchoneta de artes marciales, cuidando de mis numerosas plantas o en una ruta de senderismo.
-      </p>                      
-      <p class="lead"><b>Posicionalidad:</b> Se me percibe como persona blanca, no discapacitada, cis y hetero y tengo una apariencia alineada con los estándares de belleza predominantes, lo que me otorga un poder no ganado. Además, nací en un antiguo imperio global, tuve acceso a educación universitaria y puedo acceder a mi tierra ancestral. Tengo acceso a vivienda, comida, agua limpia, medicina y otras necesidades diarias y, en este momento, estoy estable mental y económicamente. Navego la opresión a través de algunas de mis identidades y experiencias: nací en una nación sin estado bajo la administración de un imperio interno moderno, me crié en una zona periurbana, siendo hablante de gallego. También soy SFAN (persona a la que se le asignó sexo femenino al nacer), persona no binaria, persona queer, inmigrante que tuvo que aprender inglés como tercera lengua, persona con discapacidad invisible y soy un ser humano que cuida de las personas y del planeta mientras navega el capitalismo.
-      </p>
-       <p class="lead">Camino con una verdad sagrada: ofrezco mi perspectiva única, sabiendo que <b>mi sabiduría no es original</b>, sino un tapiz tejido por las personas que vivieron antes que yo y por las tierras y comunidades que me nutrieron. Además, <b>esta consulta es un homenaje a la memoria de mis abuelos maternos</b>, Abuelo Paulino con quien compartí mi amor por la geografía y el humor, y Abuela Aurita que siempre supo y aceptó quién soy de verdad e hizo de Paulino una mejor persona. Por todo esto, mi agradecimiento es eterno.</p>
-      <p class="lead"><b>En resumen</b>, soy una guía profesional para tu viaje de vuelta a tu esencia y a la colectividad. He hecho y continúo haciendo mi propio trabajo para acompañarte bien en el camino. ¡Me encantaría colaborar contigo!
-  </p>
- 
+      <div class="learn-more-wrap">
+        <details class="learn-more">
+          <summary class="btn"><span class="learn-more-closed">Más información</span><span class="learn-more-open">Ver menos</span></summary>
+          <div class="learn-more__body">
+            <p class="lead"><b>Conoce a Coach Pau:</b></p>
+            <p class="lead">Mi trayectoria ha estado marcada por la emigración -reuniendo un mosaico de trabajos, fluidez en cinco idiomas e inmersión en diversos contextos socioculturales- y una profunda creencia en la reinvención y el crecimiento. Además, un accidente cambió mi vida y me presentó a la discapacidad invisible y al dolor crónico, haciendo de las prácticas somáticas y corporizadas (reconexión con el momento presente) una herramienta crucial de supervivencia para mí. A través de todo esto, mi núcleo permanece: soy una persona no binaria, con abuelos pescadores, y que nació y creció cerca de una frontera; el océano, mi proveedor, me enseñó que existe un poder mayor que todas nosotras, y la frontera, que las culturas diferentes comparten una sola humanidad.</p>
+            <p class="lead">Por todo ello, <b>no hago coaching desde un libro de texto sino desde "el medio"</b>: un espacio que habito a través de mi identidad no binaria, que se expande más allá del género, tendiendo puentes entre la sabiduría guiada por el corazón y la acción estratégica, el pensamiento colectivo y la soledad honrada, y el humor alegre y el silencio reverente y compasivo.</p>
+            <p class="lead">Mi formación: tengo <b>doble acreditación en sexología y en sex coaching por el Colegio Americano de Sexología (ABS) y Sex Coach U respectivamente</b>. Mis mentoras dicen que hago coaching desde un lugar de integridad y corazón. <b>Mi estilo es una mezcla de guía empática y de comunicación transparente que apoya con verdades honestas.</b> Me especializo en crear un espacio orientado a la curación donde puedas sentir seguridad para hacer un trabajo valiente y crecer.</p>
+            <p class="lead"><b>Cuando no estoy trabajando</b>, puedes encontrarme bailando ritmos afrolatinos, en una colchoneta de artes marciales, cuidando de mis numerosas plantas o en una ruta de senderismo.</p>
+            <p class="lead">Camino con una verdad sagrada: ofrezco mi perspectiva única, sabiendo que <b>mi sabiduría no es original</b>, sino un tapiz tejido por las personas que vivieron antes que yo y por las tierras y comunidades que me nutrieron. Además, <b>esta consulta es un homenaje a la memoria de mis abuelos maternos</b>, Abuelo Paulino con quien compartí mi amor por la geografía y el humor, y Abuela Aurita que siempre supo y aceptó quién soy de verdad e hizo de Paulino una mejor persona. Por todo esto, mi agradecimiento es eterno.</p>
+            <p class="lead"><b>En resumen</b>, soy una guía profesional para tu viaje de vuelta a tu esencia y a la colectividad. He hecho y continúo haciendo mi propio trabajo para acompañarte bien en el camino. ¡Me encantaría colaborar contigo!</p>
+          </div>
+        </details>
+        <p class="learn-more-hint">Haz clic para la saga al completo, incluyendo antepasados, artes marciales y mi gratitud eterna.</p>
+      </div>
+      <p class="lead"><b>Posicionalidad:</b> Se me percibe como persona blanca, no discapacitada, cis y hetero y tengo una apariencia alineada con los estándares de belleza predominantes, lo que me otorga un poder no ganado. Además, nací en un antiguo imperio global, tuve acceso a educación universitaria y puedo acceder a mi tierra ancestral. Tengo acceso a vivienda, comida, agua limpia, medicina y otras necesidades diarias y, en este momento, estoy estable mental y económicamente. Navego la opresión a través de algunas de mis identidades y experiencias: nací en una nación sin estado bajo la administración de un imperio interno moderno, me crié en una zona periurbana, siendo hablante de gallego. También soy SFAN (persona a la que se le asignó sexo femenino al nacer), persona no binaria, persona queer, inmigrante que tuvo que aprender inglés como tercera lengua, persona con discapacidad invisible y soy un ser humano que cuida de las personas y del planeta mientras navega el capitalismo.</p>
   </section>
   </span>
 
@@ -1184,6 +1374,12 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
     <!-- Contact (single, flat, with form + socials) -->
     <section class="view" id="contact">
       <span data-lang-only="en">
+
+        <figure class="photo-block">
+          <img class="page-photo page-photo--circle" src="island.png" alt="A tiny figure standing on a white salt flat beside turquoise water, beneath a hazy mountain range and clear blue sky.">
+          <figcaption class="photo-caption">A circular landscape photograph of a tiny figure standing on a white salt flat beside turquoise water, beneath a hazy mountain range and clear blue sky.</figcaption>
+        </figure>
+
 
         <p class="lead"> <b>No need to do it alone!</b> Let’s Connect & Collaborate. </p>
 
@@ -1240,10 +1436,16 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
 <!-- CONTACT GALICIAN -->
 
       <span data-lang-only="gl">
+       <figure class="photo-block">
+        <img class="page-photo page-photo--circle" src="island.png" alt="Unha diminuta figura de pé sobre unha terra chá de sal branca xunto a auga turquesa, baixo unha serra brumosa e un ceo azul despexado.">
+        <figcaption class="photo-caption">Unha fotografía circular de paisaxe dunha diminuta figura de pé sobre unha terra chá de sal branca xunto a auga turquesa, baixo unha serra brumosa e un ceo azul despexado.</figcaption>
+      </figure>
 
       <p class="lead"><b>Non hai necesidade de que o fagas en solitario!</b> Conectemos e colaboremos.
           
       </p>
+
+     
 
       <p class="lead"><b>Para persoas interesadas:  
       </b></p>
@@ -1305,9 +1507,16 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
 
 <span data-lang-only="es">
 
+  <figure class="photo-block">
+    <img class="page-photo page-photo--circle" src="island.png" alt="Una diminuta figura de pie sobre una planicie de sal blanca junto a agua turquesa, bajo una cordillera brumosa y un cielo azul despejado.">
+    <figcaption class="photo-caption">Una fotografía circular de un paisaje de una diminuta figura de pie sobre una planicie de sal blanca junto a agua turquesa, bajo una cordillera brumosa y un cielo azul despejado.</figcaption>
+  </figure>
+  
   <p class="lead"><b>¡No es necesario que lo hagas en solitario!</b> Conectemos y colaboremos. 
 
   </p>
+
+
 
   <p class="lead"><b>Para personas interesadas: 
   </b></p>
@@ -1529,10 +1738,8 @@ My work is not neutral. It is a refusal to replicate systems of non-consensual c
   
     // 🔹 List of possible desktop background images
     const desktopBackgrounds = [
-      "backg2.png",
       "backg4.jpeg",
       "backg5.jpeg",
-    //   "backg2.jpeg"
     ];
   
     function setRandomDesktopBackground() {
